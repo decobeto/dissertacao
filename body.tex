@@ -75,9 +75,9 @@ Exemplo de autoref com \mla|amsthm|: \autoref{def:definition}, \autoref{def:defn
 \autor{André Roberto Alves de Oliveira}
 \data{1 de agosto de 2019} % ou \today
 \tese % ou \dissertacao
-\titulode{Doutor em Ciência da Computação}
-\orientador{Prof. Ben Trovato, Dr.}
-\coorientador{Prof. Lars Thørväld, Dr.}
+\titulode{Mestre em Ciência da Computação}
+\orientador{Prof. Frank Augusto Siqueira, Dr.}
+% \coorientador{Prof. Lars Thørväld, Dr.}
 
 \membrobanca{Prof. Valerie Béranger, Dr.}{Universidade Federal de Santa Catarina}
 \membrobanca{Prof. Mordecai Malignatus, Dr.}{Universidade Federal de Santa Catarina}
@@ -133,7 +133,7 @@ Resultado de \mla|\autoref|s:
   \subcaptionminipage[fig:svg]%
     {.49\linewidth}%
     {O Makefile compila SVGs em PDFs usando o inkscape}%
-    {\includegraphics[width=.2\linewidth]{alphachannel.pdf}}%
+    % {\includegraphics[width=.2\linewidth]{alphachannel.pdf}}%
   \hfill% 
   % o comando acima expande para o equivalente disso:
   \begin{minipage}[t]{.49\linewidth}%
@@ -162,6 +162,67 @@ Resultado de \mla|\autoref|s:
   \end{tabular}
   \fonte{o autor.}
 \end{table}
+
+\section{Introdução}
+\subsection{Contextualização do Problema}
+\subsection{Objetivos}  
+\subsection{Proposta}
+\subsection{Contribuições}
+\subsection{Organização do Texto}
+
+\section{Fundamentação Teórica}
+\subsection{Gêmeo Digital}
+\subsubsection{Conceitos}
+
+The concept of Digital Twins (DT) originated from Michael Grieves' work on Product Lifecycle Management (PLM),
+the original term was ``Conceptual Ideal for PLM", later he referred to as the ``Mirrored Spaces Model" and the conceptual model
+was called ``Information Mirroring Model", the term currently used, Digital Twin, was coined at NASA \cite{Grieves2017}.\\
+The first use of Digital Twin technology, considered by the academia, originated at NASA during the Apollo 13 incident.
+The need to simulate the effects of the anomaly to understand the problem and find a way to bring the astronauts back safely,
+through real-time testing to evaluate solutions, led the engineers in charge to modify the pilot training simulators to replicate
+the current state of the lunar module \cite{Allen2021}.\\
+Formally, a DT is defined as a virtual replica of a physical asset, process, or system, being a software composed of models 
+and services, that intentionally, represent the original system throught its lifecycle \cite{Dalibor2022}.
+
+\subsubsection{Classificação}
+
+The concept of Digital Twins in the literature often suffers from a lack of distinction between its representations and different
+levels of complexity. Although the concept of DTs was originally introduced by Grieves in 2002, the technical differentiation between
+variations of virtual replicas was consolidated by \citeonline{Kritzinger2018}. As proposed by \citeonline{Kritzinger2018}, the differentiation
+of the digital model occurs through the level of integration of the data flow between the physical and virtual worlds.
+The representation of the models is categorized into three different levels: Digital Twin, Digital Model, and Digital Shadow.\\
+The differentiation proposed by \citeonline{Kritzinger2018} establishes an information flow as the dividing line between the categories.
+While manual flow characterizes the initial models, increasing automation and the way data is exchanged define the transition to the
+terms ``shadow'' and ``digital''. This distinction is illustrated in the communication logic between physical and virtual assets,
+as detailed below:
+\begin{itemize}
+    \item Digital Model
+    \item Digital Shadow
+    \item Digital Twin
+\end{itemize}
+%A diferença entre Digital Model, Digital Shadow e Digital Twin%
+% Talvez seja interessante colocar a definição de 5 camadas do FULLER aqui tbm %
+
+\subsection{Arquitetura de Referência e Ciclo de Vida}
+
+%Falar desde o começo do ciclo sobre os sensores, depois dados e sobre os serviços e a interface%
+
+\subsection{Tecnologias Habilitadoras}
+
+%breve resumo sobre os enablers%
+
+\subsection{Do Gêmeo Único ao Ecossistema}
+
+%Citar os trabalhos que falam sobre a execução de multiplos DTs%
+
+\subsection{Desafios de Execuções e Escalabilidade}
+
+%falar dos problemas em outras pesquisas%
+\section{Trabalhos Relacionados / Revisão da Literatura}
+
+\section{Proposta}
+\section{Metodologia}
+\section{Cronograma}
 
 \section{Frutas}
 \label{sec:frutas}
