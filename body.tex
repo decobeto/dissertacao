@@ -13,7 +13,7 @@ architecture for deployment and management of multiple Digital Twin instances in
 manufacturing environments. As the work aims to:
 \begin{itemize}
     \item Propose a layered architecture for running and orchestrating digital twins, supporting it full operational lifecycle within the twins instances over a shared computing infrastructure spanning through edge and cloud.
-    \item Design a DT Pod model that encapsulates the state management and data-driven inference logic of an individual twin as an isolated and containerized unit, along with the 3D simulation tool responsible for demonstrating the machine's operation in real time.
+    \item Design a \DT Pod model that encapsulates the state management and data-driven inference logic of an individual twin as an isolated and containerized unit, along with the 3D simulation tool responsible for demonstrating the machine's operation in real time.
     \item Implement a proof of concept instantiation of the proposed architecture using a representative industrial digital twin, sufficient to validate the orchestration mechanisms under realistic operational conditions.
     \item Evaluate the proposed architecture against the requirements of scalability between instances, and operational continuity during model updates and pod lifecycle events.
 \end{itemize}
@@ -46,37 +46,37 @@ aspects related to Digital Twins, which form the basis for the proposed approach
 \section{Digital Twin}
 \subsection{Conceptual Foundations}
 
-The concept of Digital Twins (DT) originated from Michael Grieves' work on Product Lifecycle Management (PLM) 
-in the University of Michigan. The original term was ``Conceptual Ideal for PLM'', later referred to as the
+The concept of Digital Twin originated from Michael Grieves' work on \PLM 
+in the University of Michigan. The original term was ``Conceptual Ideal for \PLM'', later referred to as the
 ``Mirrored Spaces Model'' and the conceptual model was called ``Information Mirroring Model''  \cite{Grieves2017}.
 The term currently used, Digital Twin, was coined at NASA by John Vickers while working with Grieves\cite{Wuni2025}.
-One the first use cases of DTs also occurred at NASA, particularly in the context of the Apollo program, the need to simulate the
+One the first use cases of \DTs also occurred at NASA, particularly in the context of the Apollo program, the need to simulate the
 effects of the anomaly to understand the problem and find a way to bring the astronauts back safely, through real-time testing to
 evaluate solutions, led the engineers in charge to modify the pilot training simulators to replicate the current state of the
 lunar module \cite{Allen2021}.\\
-Formally, a DT is defined as a virtual replica of a physical asset, process, or system, being a software composed of models and
+Formally, a \DT is defined as a virtual replica of a physical asset, process, or system, being a software composed of models and
 services, that intentionally, represent the original system throughout its lifecycle \cite{Dalibor2022}.
-\citeonline{Grieves2014}, in his white paper, also describes and proposes a DT model that forms the basis for all current frameworks,
-understanding that DT is not a unique system but a composite one, this idea is also later developed by \citeonline{Dalibor2022} where they
-investigate the conceptual properties and the fundamental concepts that make a DT. The concept proposed by Grieves divides the
-functioning of DTs into three layers or three main parts: physical entities in real space, virtual models in virtual space, and the
+\citeonline{Grieves2014}, in his white paper, also describes and proposes a \DT model that forms the basis for all current frameworks,
+understanding that \DT is not a unique system but a composite one, this idea is also later developed by \citeonline{Dalibor2022} where they
+investigate the conceptual properties and the fundamental concepts that make a \DT. The concept proposed by Grieves divides the
+functioning of \DTs into three layers or three main parts: physical entities in real space, virtual models in virtual space, and the
 data and information that connects physical entities and virtual models together.\\
-Complementing the theoretical definitions, NIST (National Institute of Standards and Technology) an agency funded by the
-USA government, created guidelines for implementation of DTs based on the ISO 23247 standard in the
+Complementing the theoretical definitions, \NIST an agency funded by the
+USA government, created guidelines for implementation of \DTs based on the ISO 23247 standard in the
 ``Advanced Manufacturing Series 400-2 - Use Case Scenarios for Digital Twin Implementation Based on ISO 2324'' written 
 by \citeonline{Shao2021}. This technical approach focuses on the standardization of reference architectures, enabling 
-context-dependent instantiations, composability, interoperability, and reusability of the DTs components, 
+context-dependent instantiations, composability, interoperability, and reusability of the \DTs components, 
 these standarts would also support other digital twin requirements suas as digital thread, data synchronization, data assurance and
-data security, and user interfaces \cite{Shao2021}. \citeonline{Shao2021} and NIST also address the neeed for integration,
-since no single DT is capable of providing all the solutions for a complex system, equipment, or manufacturing process,
-making integration necessary to cover a broader scope. For a set definition a DT can be understod as an integrated multi-physics,
+data security, and user interfaces \cite{Shao2021}. \citeonline{Shao2021} and \NIST also address the neeed for integration,
+since no single \DT is capable of providing all the solutions for a complex system, equipment, or manufacturing process,
+making integration necessary to cover a broader scope. For a set definition a \DT can be understod as an integrated multi-physics,
 multi-scale, and probabilistic simulation of a complex product and uses the best available physical models, sensors updates, etc.,
 to mirror the life of its corresponding twin \cite{Tao2017PLM}.
 
 \section{Classification}
 
 The concept of Digital Twins in the literature often suffers from a lack of distinction between its representations and
-different levels of complexity. Although the concept of DTs was originally introduced by Grieves in 2002, the technical
+different levels of complexity. Although the concept of \DTs was originally introduced by Grieves in 2002, the technical
 differentiation between variations of virtual replicas was consolidated by \citeonline{Kritzinger2018}. 
 As proposed by \citeonline{Kritzinger2018}, the differentiation of the digital model occurs through the level of integration of the
 data flow between the physical and virtual worlds. The representation of the models is categorized into three different levels:
@@ -110,7 +110,7 @@ virtual assets, as detailed below:
 \end{itemize}
 
 The taxonomy established by \citeonline{Kritzinger2018} provides the necessary conceptual clarity to distinguish static representations
-from dynamic cyber-physical systems in a definition that can be described as canonical to the field of Digital Twins. However,
+from dynamic \CPS in a definition that can be described as canonical to the field of Digital Twins. However,
 the transition from a digital shadow to a full digital twin imposes requirements that transcend simple connectivity.
 
 \section{Internal Reference Architecture and Digital Twin Lifecycle}
@@ -121,38 +121,38 @@ The digital twin is not one complete model of the physical product, but a set of
 simulation models, which are of suitable granularity for their intended purpose and evolve throughout the product 
 lifecycle \cite{Schleich2017}. This idea can explain the concept of digital twins and its applications in different industrial fields,
 as the digital must fit its purpose on the use of its physical counterpart. The connection between the physical and the virtual
-product enables us to conceptualize, compare, and collaborate \cite{Grieves2014}. This way, the DT not only serves a 
+product enables us to conceptualize, compare, and collaborate \cite{Grieves2014}. This way, the \DT not only serves a 
 representation purpose but is also applicable for making predictions about the expected product behaviour, while the granularity 
 of the simulation models fits their purpose and evolves from early design stages \cite{Schleich2017}. From the product lifecycle
 management point of view, there is a strong need to integrate all lifecycle data artifacts into a comprehensive management system that
 can be used by various actors for querying data and making predictions about the physical product from the digital twin for design
-optimization and manufacturing \cite{Schleich2017}. To help conceptualize what a DT is from its design stage to its operation and
-insert it into a production lifecycle, \citeonline{Grieves2017} created definitions of how to create and operate DTs in the triadic
+optimization and manufacturing \cite{Schleich2017}. To help conceptualize what a \DT is from its design stage to its operation and
+insert it into a production lifecycle, \citeonline{Grieves2017} created definitions of how to create and operate \DTs in the triadic
 architecture, as can be seen below:
 
 \begin{itemize}
-    \item Digital Twin Prototype (DTP): Is used to defined the prototypical physical artifact, as the phase used to create and
-    design the DT. It contais the informational sets necessary to describe and produce a physical version taht duplicates or twins
-    the virtual version. These informational sets include the requirements to the annotated 3D model, the Bill of Materials (BoM),
-    Bill of Process (BoP), Bill of Services (BoS) and Bill of Disposal (BoD). This means that in this phase the DT must have highly
+    \item \DTP : Is used to defined the prototypical physical artifact, as the phase used to create and
+    design the \DT. It contais the informational sets necessary to describe and produce a physical version taht duplicates or twins
+    the virtual version. These informational sets include the requirements to the annotated 3D model, the \BoM,
+    \BoP, \BoS and \BoD. This means that in this phase the \DT must have highly
     datailed information about the physical part. The annotated 3D model can be understod as a form that has all the tolerances,
-    exact measurements and physical properties. The BoM is the list of ingredients of the physical part, the BoP is about the
-    instruction manual and the BoS and BoD are about repairing and disposing of the physical part, respectively.
-    \item Digital Twin Instace (DTI): After being designed and created, instancing the DT is the next step. The DTP can be seen as
-    the mold, while the DTI is a digital copy of an individual product operating in the real world. It describes a specific 
+    exact measurements and physical properties. The \BoM is the list of ingredients of the physical part, the \BoP is about the
+    instruction manual and the \BoS and \BoD are about repairing and disposing of the physical part, respectively.
+    \item \DTI : After being designed and created, instancing the \DT is the next step. The \DTP can be seen as
+    the mold, while the \DTI is a digital copy of an individual product operating in the real world. It describes a specific 
     corresponding physical product that an individual Digital Twin remais linked to throughout the life of that physical product. 
-    Depending on the use case of this type of Digital Twin, it may contain: the fully annotated 3D model with Geometric Dimensioning 
-    and Tolerancing (GD\&T) that describes the geometry of the physical instance and its components; a Bill of Process that lists 
+    Depending on the use case of this type of Digital Twin, it may contain: the fully annotated 3D model with \GDNT that describes
+    the geometry of the physical instance and its components; a \BoP that lists 
     the operations that were performed in creating this physical instance, along with the results of measurements and tests on the 
     instance; a Service Record that describes the past services performed and components replaced; and Operational States captured 
     from actual sensor data, current, past, actual, and future predicted.
-    \item Digital Twin Environment (DTE) - This is an integrated, multi-domain physical application space for operating on the DT for 
+    \item \DTE : This is an integrated, multi-domain physical application space for operating on the \DT for 
     a variety of purposes, that can also include prediction, i.e., the Digital Twin would be used for predicting future behavior and 
     performance of the physical product. In the prototyping stage, this would be the prediction of the behavior of the designed 
     product with components that vary between its high and low tolerances in order to ascertain that the as-designed product met the 
     proposed requirements. In the instance stage the prediction would be specific to the physical counterpart that can incorporate 
     actual data to the mixture. The predicted performance can be based on the current product lifecycle at its current state and can 
-    use it to move forward in the simulations. The variety of purposes can also be interrogative, which apply to the DTIs that can be 
+    use it to move forward in the simulations. The variety of purposes can also be interrogative, which apply to the \DTIs that can be 
     interrogated for current and past histories, without caring of where their physical counterpart resideds in the world. Individual 
     instances can be interrogated for their current system state, as temperature or fuel level as example, while multiple instances 
     of products would provide data that could be correlated for predicting future states, like correlating readings of multiple 
@@ -160,7 +160,7 @@ architecture, as can be seen below:
 \end{itemize}
 
 According to \citeonline{Schleich2017} has been reported in the scientific literature and in practice that the current limitations to the 
-implementation of the vision of the DTs are insufficient for synchronization between the physical and the digital world to establish 
+implementation of the vision of the \DTs are insufficient for synchronization between the physical and the digital world to establish 
 closed loops, the missing of high-fidelity models for simulation and virtual testing at multiple scales, the lacking uncertainty 
 quantification for such models, the difficulties in the prediction of complex systems, as the challenges for gathering and processing 
 large data sets. The advances in information technology are driving the manufacturing industry toward the big data era, and 
@@ -180,11 +180,11 @@ Where each one of this componentes plays a critical role in the system architect
 reported by \citeonline{Qi2021}:
 
 \begin{itemize}
-    \item Physical Entities (PE): The physical world is the foundation of the DT, an it may consist of device or product, physical system, activities process, and even an organization. It's implemented based on the physical laws and deals with the uncertainty of the environment, the physical entity can be encompassed in a diverse spectrum where it can range from individual devices to a complex operational process. These physical entities can be divided into three levels according to function and structure, which are: the unit level, which focuses on individual components of machines representing a lesser scale of modeling; the system level, which can be understood as the coordination of multiple units and it complex functions; and the system of systems (SoS) level, that can be the highest level of abstraction, where independent and heterogeneous systems collaborate to achieve objectives, such as an industrial plant or logistics companies. The physical entities can be understood as the entire foundation for the digital architecture construction.
-    \item Virtual Models (VM): Virtual models must be a faithful replica of the physical entities, which reproduce the physical geometries, properties, behaviors and rules. It can be divided into four different models that can be understood as the 3-dimensional geometric models that describe a physical entity in terms of its shape, size, tolerance and structural relation. The Physics Models reflect the physical phenomena of the entities based on their physical properties, such as deformation, delamination, fracture and corrosion. Behavior model describe the behaviors, which are the transition of states, and responding mechanisms of the entities against changes in the external environment. The rule models equip DTs with logical abilities such as reasoning, judgment, evaluation and autonomous decision-making, that works based upon the rules extracted from historical data or come from domain experts.
-    \item Services in Digital Twin (Ss): Services are essential components of DTs mainly in today's extremely connected world and in the light of the Everything-as-a-Service (XaaS) paradigm. The operation of a DT requires the continuous support of various platform services, which accommodate the customized software development, model building, and service delivery. It can be understood in two different contexts. Firstly, the DT provides users with application services concerning simulation, verification, monitoring, etc. Secondly, a number of third-party services are needed in the process of building a functioning DT, such as data services, knowledge services, algorithms services, and so on.
-    \item Digital Twin Data (DD): The data is the key driver of a DT, as it deals with multi-temporal scale, multi-dimension, multi-source, and heterogeneous data. Some of this data is obtained from physical entities, including static attribute data and dynamic condition data. Some data is generated by virtual models, which can reflect in the simulation result. Some data is obtained from services, which describe the service invocation and execution, or can be provided by domain experts or extracted from existing data, as it can be understood as knowledge. There is also fusion data, which is generated as the results of the combined data mentioned above.
-    \item Connections in Digital Twin (CN): The digital representation is connected dynamically with their real counterpart to enable advanced simulation, operation, and analysis. This data exchange occurs with the connections between physical entities, virtual models, and services. There are 6 connections for a DT, which are the connection between the physical asset and its digital model, between the physical assets and data, between physical asset and services, between the digital model and data,  between the digital model and services, and between services and data. This way, all the parts of what makes a DT can collaborate.
+    \item \PE: The physical world is the foundation of the \DT, an it may consist of device or product, physical system, activities process, and even an organization. It's implemented based on the physical laws and deals with the uncertainty of the environment, the \PE can be encompassed in a diverse spectrum where it can range from individual devices to a complex operational process. These \PEs can be divided into three levels according to function and structure, which are: the unit level, which focuses on individual components of machines representing a lesser scale of modeling; the system level, which can be understood as the coordination of multiple units and it complex functions; and the \SoS level, that can be the highest level of abstraction, where independent and heterogeneous systems collaborate to achieve objectives, such as an industrial plant or logistics companies. The \PEs can be understood as the entire foundation for the digital architecture construction.
+    \item \VM: Virtual models must be a faithful replica of the physical entities, which reproduce the physical geometries, properties, behaviors and rules. It can be divided into four different models that can be understood as the 3-dimensional geometric models that describe a physical entity in terms of its shape, size, tolerance and structural relation. The Physics Models reflect the physical phenomena of the entities based on their physical properties, such as deformation, delamination, fracture and corrosion. Behavior model describe the behaviors, which are the transition of states, and responding mechanisms of the entities against changes in the external environment. The rule models equip \DTs with logical abilities such as reasoning, judgment, evaluation and autonomous decision-making, that works based upon the rules extracted from historical data or come from domain experts.
+    \item \Ss: Services are essential components of \DTs mainly in today's extremely connected world and in the light of the \XaaS paradigm. The operation of a \DT requires the continuous support of various platform services, which accommodate the customized software development, model building, and service delivery. It can be understood in two different contexts. Firstly, the \DT provides users with application services concerning simulation, verification, monitoring, etc. Secondly, a number of third-party services are needed in the process of building a functioning \DT, such as data services, knowledge services, algorithms services, and so on.
+    \item \DD: The data is the key driver of a \DT, as it deals with multi-temporal scale, multi-dimension, multi-source, and heterogeneous data. Some of this data is obtained from \PEs, including static attribute data and dynamic condition data. Some data is generated by virtual models, which can reflect in the simulation result. Some data is obtained from services, which describe the service invocation and execution, or can be provided by domain experts or extracted from existing data, as it can be understood as knowledge. There is also fusion data, which is generated as the results of the combined data mentioned above.
+    \item \CN: The digital representation is connected dynamically with their real counterpart to enable advanced simulation, operation, and analysis. This data exchange occurs with the connections between \PEs, virtual models, and services. There are 6 connections for a \DT, which are the connection between the physical asset and its digital model, between the physical assets and data, between physical asset and services, between the digital model and data,  between the digital model and services, and between services and data. This way, all the parts of what makes a \DT can collaborate.
 \end{itemize}
 
 \section{Interoperability}
@@ -199,16 +199,16 @@ interoperability includes the ability of exchanging or sharing information and u
 and heterogeneous environment, not being limited to the technical exchange of data but encompassing also to its interpretation. 
 For computer science and software engineering, interoperability is a question of levels of compatibility in terms of communication 
 protocols, communication interfaces, data accesses, data types, data semantics, application functionality and dynamic behavior while 
-integration is a matter of database schemas and information systems integration \cite{Vernadat2010}.\\
+integration is a matter of \DB schemas and information systems integration \cite{Vernadat2010}.\\
 As digital infrastructures become increasingly interconnected, interoperability stands out as a key enabler for the integration of 
-cyber-physical systems, allowing companies and organizations to combine multiple technological components into operational 
+\CPS, allowing companies and organizations to combine multiple technological components into operational 
 environments or platforms.
 
 \subsection{Levels of Interoperability}
 In technical systems, multiple levels of interoperability must be considered \cite{Jacoby2020}, reflecting the increasing complexity
 of system integration. Reference frameworks are useful instruments to position and relate to one another, but also to compare, 
 concepts, principles, methods, standards, models and tools in a certain domain of concern \cite{Vernadat2010}. 
-According to \citeonline{Vernadat2010} the European Commission (EC) in the European Interoperability Framework (EIF) defines three 
+According to \citeonline{Vernadat2010} \EC in the \EIF defines three 
 essential levels of interoperability, namely technical, semantic and organizational. The technical level is about facilitating 
 communication and interchange in terms of communication protocols, data exchange and message passing among application protocols. 
 The semantic level can be defined as the ability to share, aggregate or synchronize data/information across heterogeneous information 
@@ -223,9 +223,9 @@ While the classification of interoperability into technical, semantic, and organ
 understanding system integration, it may not fully capture the complexity of interactions required in advanced distributed systems. 
 In particular, environments like the Digital Twin ecosystem that demands deeper levels of interoperability, including shared 
 understanding of context, behavior, and system dynamics.\\
-To address these limitations, the Levels of Conceptual Interoperability Model (LCIM), proposed by \citeonline{Tolk2003}, extends the 
+To address these limitations, the \LCIM, proposed by \citeonline{Tolk2003}, extends the 
 traditional interoperability classifications by introducing additional levels that consider not only data exchange and meaning but 
-also the use, interpretation, and dynamic behavior of information within systems. As explained by \citeonline{Wang2009} the LCIM 
+also the use, interpretation, and dynamic behavior of information within systems. As explained by \citeonline{Wang2009} the \LCIM 
 defines seven interoperability levels. In the first level, L0, there is no interoperability between systems. At the L1 (Technical) 
 level there is a technical connection between systems and can exchange data between them. At the L2 (Syntatic) level, system have a 
 protocol that is agreed upon to exchange right forms of data in the right order, but the meaning/semantic of the data is not 
@@ -235,26 +235,26 @@ processes, and the meaning of information being exchanged. At the L5 (Dynamic) l
 information production and consumption based on understood changes to meaning, due to the change of context as time increases. 
 At the last level L6 (Conceptual), interoperating systems are fully aware of each other´s information, processes, contexts, and 
 modeling assumptions. According to \citeonline{David2024} the most important transitions in interoperability levels for the digital 
-twin context are the L3, L4, L5 and L6. These additional levels are particularly relevant in DT systems where multiple interacting 
+twin context are the L3, L4, L5 and L6. These additional levels are particularly relevant in \DT systems where multiple interacting 
 twins and machines must not only exchange data but also coordinate behaviors, share contextual information and operate consistently 
 across distributed environments.
 
 \subsection{Interoperability in Digital Twin Systems}
 Interoperability is particularly important in the context of of Digital Twin systems, where multiple technological components must 
-interact to maintain a synchronized relationship between physical assets and their virtual counterparts. DT environments usually 
+interact to maintain a synchronized relationship between physical assets and their virtual counterparts. \DT environments usually 
 integrate sensors, data acquisition systems, simulation models, analytics platforms and visualization tools. Nonetheless, integrating 
-DTs into complex cyber-physical ecosystem can raise some interoperability challenges. As stated by \citeonline{Acharya2026}, some 
+\DTs into complex cyber-physical ecosystem can raise some interoperability challenges. As stated by \citeonline{Acharya2026}, some 
 works report latency, platform mismatches, inconsistent data standards, organizational collaboration, knowledge exchange, limited 
 scalability, non-modular architectures, legacy systems, and many more as being interoperability-driven challenges.\\
 To address these challenges, some enabling technologies and industrial standards have been developed to support interoperability in 
 Digital Twin environments. According to \citeonline{Jacoby2020}, achieving interoperability on a global scale requires formal 
-standardization. Most organizations rely on open standards as \textit{OPC-UA} (Open Platform Communications Unified Architecture), 
-\textit{MQTT} (Message Queuing Telemetry Transport), RESTful APIs, regulatory guidelines like ISO/IEC/SAREF and structured 
-representation of DTs like AAS (Asset Administration Shell), created by the collective work of several german institutions including 
+standardization. Most organizations rely on open standards as \textit{\OPCUA}, 
+\textit{\MQTT}, RESTful APIs, regulatory guidelines like ISO/IEC/SAREF and structured 
+representation of \DTs like \AAS (Asset Administration Shell), created by the collective work of several german institutions including 
 the industrial associations ZVEI, VDMA, BITKOM and researches from the VDI/VDE \cite{Adolphs2015}, as necessary enablers for complex 
-integrations \cite{Acharya2026}. At the communication level, protocols such as \textit{OPC-UA} provide a plataform-independent 
+integrations \cite{Acharya2026}. At the communication level, protocols such as \textit{\OPCUA} provide a plataform-independent 
 mechanism for data exchange between industrial devices and software systems, supporting both syntatic and semantic interoperability. 
-In addition, the concept of the \textit{AAS} has emerged as a key element for interoperability in the Industry 4.0, which can be 
+In addition, the concept of the \textit{\AAS} has emerged as a key element for interoperability in the Industry 4.0, which can be 
 understood as a standardized digital representation of an asset, providing a common interface and a data model.\\
 Beyond these standards, interoperability in Digital Twin systems is also supported by modern software and data technologies, 
 including cloud computing platforms, microservices architectures, and data integration frameworks. The integration of multiple 
@@ -265,13 +265,12 @@ coordination and interaction of multiple digital models across heterogeneous tec
 
 \section{Edge Computing}
 \citeonline{Kong2022} define edge computing as a distributed computing architecture that extends cloud computing to the edge of the network,
-close to the data source. The edge is considered a feasible computing basis for offloading computing tasks in the Internet of Things 
-(IoT), as it can provide real-time data analysis, increase network capacity, and avoid data transmission congestion. In addition, 
+close to the data source. The edge is considered a feasible computing basis for offloading computing tasks in the \IoT, as it can provide real-time data analysis, increase network capacity, and avoid data transmission congestion. In addition, 
 it avoids the high latency and bandwidth required for processing data in the cloud.\\
-As explained by \cite{Picone2023}, DTs cannot be delegated only to the cloud but should instead be handled as close as possible to 
-the physical assets in order to maximize their efficiency. Latency and reliability issues introduce disruption to DTs since the link 
+As explained by \cite{Picone2023}, \DTs cannot be delegated only to the cloud but should instead be handled as close as possible to 
+the physical assets in order to maximize their efficiency. Latency and reliability issues introduce disruption to \DTs since the link 
 between the physical and the logical object is effective only if the refresh time is lower than the average access time of the 
-application using the twin. Edge computing paradigms allow overcoming these limitations, enabling DTs to operate with ultra-responsive 
+application using the twin. Edge computing paradigms allow overcoming these limitations, enabling \DTs to operate with ultra-responsive 
 and ultra-reliable connectivity in multiple operational contexts \cite{Picone2023}.
 
 \section{Orchestration}
@@ -290,13 +289,13 @@ and also facilitate the integration of data, analytics, and artificial intellige
 \chapter{Proposal}
 \label{ch:proposal}
 
-The deployment of Digital Twins in industrial manufacturing environments does not occur in isolation. DTs are fully integrated with 
+The deployment of Digital Twins in industrial manufacturing environments does not occur in isolation. \DTs are fully integrated with 
 the shop floor, which is composed of multiple heterogeneous assets, as machines, conveyors, robots and sensors, each potentially 
 requiring its own DT instance, its own data pipeline, and its own lifecycle management.
 
 
 Taking these considerations into account, for the purpose of this work, a Digital Twin Ecosystem is understood as a networked 
-arrangement of DTs operating over a shared platform, in which semantic interoperability enables fleet-level reasoning and knowledge 
+arrangement of \DTs operating over a shared platform, in which semantic interoperability enables fleet-level reasoning and knowledge 
 transfer across different assets, subject to the data governance constraints of the deployment context. This definition can be 
 considered an expansion of the Digital Twin Environment introduced by \citeonline{Grieves2017} and described in Section 2.2, 
 extended to accommodate fleet-scale platforms in the industrial context. The central argument of this proposal is that realizing 
@@ -320,42 +319,42 @@ data ingestion, storage, execution and application services with data analytics.
 The technologies selected for the architectural representation were not chosen and are used only as examples of how the layers work. 
 The five layers and their operational methods are detailed below.
 
-\section{Physical Edge Layer}
+\subsection{Physical Edge Layer}
 The physical edge layer is the interface between the industrial shop floor and the digital platform. It comprises the physical assets, machines, and sensors that generate the data consumed by the platform, as well as the gateway infrastructure responsible for collecting, pre-processing, and forwarding it to the ingestion layer.\\
-The communication between the gateway and the industrial assets can be made using the OPC-UA protocol, as the OPC-UA provides a standardized framework for secure, reliable, and platform-independent communication that allows digital twins to integrate with diverse systems and components \cite{David2024}, this way allowing the gateway to consume data from heterogeneous machines without requiring custom-made integration for each asset type.\\
+The communication between the gateway and the industrial assets can be made using the \OPCUA protocol, as the \OPCUA provides a standardized framework for secure, reliable, and platform-independent communication that allows digital twins to integrate with diverse systems and components \cite{David2024}, this way allowing the gateway to consume data from heterogeneous machines without requiring custom-made integration for each asset type.\\
 The gateway pre-processes the raw data before sending it upstream. These way, it is possible to guarantee data validation and timestamp alignment, ensuring the data delivered to the ingestion layer is consistent in format regardless of the source asset. Is also important that the gateway provides a buffering capability, allowing it to retain data locally during periods of connectivity interruption and sending it once the connection is restored. This is particularly relevant in industrial environments, where networks reliability cannot always be guaranteed.\\
-The connection between the gateway and the ingestion layer is established via lightweight messaging protocol. The specific protocol, MQTT or WebSocket, will be selected during the implementation phase based on empirical evaluation of the latency and throughput characteristics of the monitored assets, as both are viable candidates for this role. This decision is considered an implementation detail and does not affect the architectural design of either the edge layer or the data ingestion layer.
+The connection between the gateway and the ingestion layer is established via lightweight messaging protocol. The specific protocol, \MQTT or WebSocket, will be selected during the implementation phase based on empirical evaluation of the latency and throughput characteristics of the monitored assets, as both are viable candidates for this role. This decision is considered an implementation detail and does not affect the architectural design of either the edge layer or the data ingestion layer.
 
-\section{Data Ingestion Layer}
+\subsection{Data Ingestion Layer}
 
 The data ingestion layer is responsible for receiving telemetry and data streams from the physical edge layer, validating their structure, and routing each message to the correct processing destination. This layer is built based on a central message broker, which is complemented by a schema registry and the event router so that governance can be assured. \\
-The message broker is the central intake point for all the data and telemetry entering the platform. It receives data streams from multiples assets concurrently and decouples it, to the DTPods through the schema registry and message broker and also sends the data to the storage. Each asset is identified by a unique identifier embedded in every message it produces, allowing the broker to organize incoming data by source and maintain message ordering within each asset stream, and ensuring that each DTPod consumes only the data to its physical counterpart.\\
+The message broker is the central intake point for all the data and telemetry entering the platform. It receives data streams from multiples assets concurrently and decouples it, to the \DTPods through the schema registry and message broker and also sends the data to the storage. Each asset is identified by a unique identifier embedded in every message it produces, allowing the broker to organize incoming data by source and maintain message ordering within each asset stream, and ensuring that each \DTPod consumes only the data to its physical counterpart.\\
 The schema registry will be used to enforce a data contract between the machines and the platform as a way to validate whether the data is coming from the right asset. As updates in the machine software or firmware can change the names used in fields or other data sensors, this mechanism can be used to alert the operator to prevent data corruption or other problems, and to maintain syntactic interoperability as cited in the LCIM Framework at Section 2.3.1, ensuring that the data used in the platform is structurally consistent.\\
-The event router is responsible for consuming the messages from the message broker and forwarding them to the right DTPod instance based on the asset identifier embedded in the message payload. When a new DT instance is provisioned, the twin manager registers the new asset identifier within the event router, which begins to send the corresponding data stream to the pod. When the pod is decommissioned, the registration can be removed and the data stream is either archived or redirected.
+The event router is responsible for consuming the messages from the message broker and forwarding them to the right \DTPod instance based on the asset identifier embedded in the message payload. When a new DT instance is provisioned, the twin manager registers the new asset identifier within the event router, which begins to send the corresponding data stream to the pod. When the pod is decommissioned, the registration can be removed and the data stream is either archived or redirected.
 
-\section{Storage Layer}
+\subsection{Storage Layer}
 
-The storage layer provides persistent data management across three distinct stores, each optimized for a different category of data generated and consumed by the platform. The separation into specialized stores reflects the fundamentally different access patterns, retention requirements, and query characteristics of each data type making use of deeper database concepts with polyglot persistence.\\
-The first storage is a time-series database (DB), which receives continuous telemetry streams produced by the physical assets, such as sensor readings, temperature measurements, vibration data and other operational parameters, and saves the information according to each asset to which that data belongs. The time-series store is the primary data source for the analytics within the Application layer, which can use the historical data to train anomaly detection and predictive maintenance.\\
-The second storage is an object store that employs S3-compatible storage, which is used to store binary artifacts that have a lifecycle independent of the operational data, like the 3D model of the physical assets.\\
-The third storage is a graph database, which can be used to maintain the ontological model of the machines, their components, the sensors attached to them, and the relationships between the entities. This knowledge graph can be used for the semantic enrichment of anomaly detection and other patterns that can be discovered through data analysis. For example, when a DTPod detects an anomalous reading from a sensor, the graph can be queried to determine which component the sensor monitors and what can be expected if failures occur. This contextual information can help with maintenance and other recommendations.
+The storage layer provides persistent data management across three distinct stores, each optimized for a different category of data generated and consumed by the platform. The separation into specialized stores reflects the fundamentally different access patterns, retention requirements, and query characteristics of each data type making use of deeper \DB concepts with polyglot persistence.\\
+The first storage is a time-series \DB, which receives continuous telemetry streams produced by the physical assets, such as sensor readings, temperature measurements, vibration data and other operational parameters, and saves the information according to each asset to which that data belongs. The time-series store is the primary data source for the analytics within the Application layer, which can use the historical data to train anomaly detection and predictive maintenance.\\
+The second storage is an object store that employs \SthreeStorage compatible storage, which is used to store binary artifacts that have a lifecycle independent of the operational data, like the 3D model of the physical assets.\\
+The third storage is a graph \DB, which can be used to maintain the ontological model of the machines, their components, the sensors attached to them, and the relationships between the entities. This knowledge graph can be used for the semantic enrichment of anomaly detection and other patterns that can be discovered through data analysis. For example, when a \DTPod detects an anomalous reading from a sensor, the graph can be queried to determine which component the sensor monitors and what can be expected if failures occur. This contextual information can help with maintenance and other recommendations.
 
 \subsection{Execution Layer}
 
-The execution layer is the operational core of the proposed platform and the primary focus of this work. It will be implemented using a container orchestration platform, possibly Kubernetes, which can provide the container scheduling, health monitoring, and lifecycle management capabilities necessary to operate the concurrent DTPods instances over the shared computing infrastructure.\\
-This layer can be divided into two functional components: the Stream Processor and the DTPod instances. The Stream Processor performs the streaming and processing of the data arriving from the ingestion layer before it can be delivered to individual pods. The Stream Processor acts as an intermediary that ensures each DTPod receives preprocessed and contextually enriched data, which can be obtained from the knowledge graph, rather than raw data.\\
-Each DTPod is a containerized unit that encapsulates the complete runtime of a single DT instance. The DTPod maintains an internal Model State, which represents the current operational state of the physical asset, continuously updated as new data arrives from the Stream Processor. One possible way to achieve this is to periodically checkpoint the Model State to the object store to help with eventual pod restarts and ensure that the DT is preserved across infrastructure events without the need to re-activate the physical asset. The processing logic applied to the Model State, which can be a hybrid approach between a physics-based simulation and a data-driven inference model, is encapsulated within the pod. This design decision treats the Digital Twin as a hot-reload mechanism that can be changed without affecting different parts of the architecture, like new versions of the physical asset can be loaded into the object store.\\
-The DTPod produces output results and recommended actions to be taken on the physical machine. This results can be used in the Application Services layer for visualization and analytics, and routed back to the physical asset, providing a closed-loop and staying within the current propositions of what it means to be a digital twin, as proposed by \cite{Kritzinger2018}. The orchestration layer that exists between the Execution layer and the Twin Manager directs the full lifecycle of the DTPod instances; when a new asset is activated in the platform, the twin manager submits a pod specification to the container orchestration platform, to make it available on the compute node. When an asset is decommissioned, the Twin Manager instructs the container orchestrator to terminate the corresponding pod and archive its final state checkpoint.
+The execution layer is the operational core of the proposed platform and the primary focus of this work. It will be implemented using a container orchestration platform, possibly Kubernetes, which can provide the container scheduling, health monitoring, and lifecycle management capabilities necessary to operate the concurrent \DTPods instances over the shared computing infrastructure.\\
+This layer can be divided into two functional components: the Stream Processor and the \DTPod instances. The Stream Processor performs the streaming and processing of the data arriving from the ingestion layer before it can be delivered to individual pods. The Stream Processor acts as an intermediary that ensures each \DTPod receives preprocessed and contextually enriched data, which can be obtained from the knowledge graph, rather than raw data.\\
+Each \DTPod is a containerized unit that encapsulates the complete runtime of a single DT instance. The \DTPod maintains an internal Model State, which represents the current operational state of the physical asset, continuously updated as new data arrives from the Stream Processor. One possible way to achieve this is to periodically checkpoint the Model State to the object store to help with eventual pod restarts and ensure that the DT is preserved across infrastructure events without the need to re-activate the physical asset. The processing logic applied to the Model State, which can be a hybrid approach between a physics-based simulation and a data-driven inference model, is encapsulated within the pod. This design decision treats the Digital Twin as a hot-reload mechanism that can be changed without affecting different parts of the architecture, like new versions of the physical asset can be loaded into the object store.\\
+The \DTPod produces output results and recommended actions to be taken on the physical machine. This results can be used in the Application Services layer for visualization and analytics, and routed back to the physical asset, providing a closed-loop and staying within the current propositions of what it means to be a digital twin, as proposed by \cite{Kritzinger2018}. The orchestration layer that exists between the Execution layer and the Twin Manager directs the full lifecycle of the \DTPod instances; when a new asset is activated in the platform, the twin manager submits a pod specification to the container orchestration platform, to make it available on the compute node. When an asset is decommissioned, the Twin Manager instructs the container orchestrator to terminate the corresponding pod and archive its final state checkpoint.
 
 \subsection{Application Services Layer}
 
 The Application Services layer provides the interfaces through which operators, analysts, and external systems interact with the platform. The access to the data is mediated by an API Gateway, which enforces authentication, rate limiting, and routing across the layer's services.\\
-The Dashboard service provides real-time operational visibility into the fleet of monitored assets, consuming the data from each DTPod, and also presenting performance indicators, anomaly alerts and fleet status to the operators at the shop floor. The dashboard is updated continuously as new data arrives from the execution layer, providing a live view of operational status of all machines, also providing analytics services on a fleet-level, without the need to interact with individual DTs instances directly.\\
+The Dashboard service provides real-time operational visibility into the fleet of monitored assets, consuming the data from each \DTPod, and also presenting performance indicators, anomaly alerts and fleet status to the operators at the shop floor. The dashboard is updated continuously as new data arrives from the execution layer, providing a live view of operational status of all machines, also providing analytics services on a fleet-level, without the need to interact with individual \DTs instances directly.\\
 The 3D visualization service can be implemented using a range of technologies, with the main candidate being the Unity game engine, which can be used to render interactive three dimensional models of each monitored asset and animating it in response to the current model state. This allows the operators and other users to intuitively interpret the machine's condition through its digital representation. The 3D model assets are loaded from the object store at initialization, making the visualization service purely a consumer of the state produced by the execution layer.
-As defined in Section 4.5, the twin manager acts as the control panel to the operational lifecycle of all the DTs on the platform. It shows a interface in which operators can provision new DTs, monitor the status of running pods and decommission running DTs. 
+As defined in Section 4.5, the twin manager acts as the control panel to the operational lifecycle of all the \DTs on the platform. It shows a interface in which operators can provision new \DTs, monitor the status of running pods and decommission running \DTs. 
 
 \section{Methodology and Timeline}
-This research follows an applied investigation grounded in the Design Science Research (DSR) methodology as presented by \citeonline{Hevner2004}, 
+This research follows an applied investigation grounded in the \DSR methodology as presented by \citeonline{Hevner2004}, 
 as it seeks to address practical and domain-specific problems in the industrial context, as it follows the absence of a structured 
 architecture for the orchestration of multiple concurrent Digital Twin instances. With this, the aim of this research work  is to 
 generate knowledge through direct applicability, culminating in the development of a technological artifact that is relevant to the 
