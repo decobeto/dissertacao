@@ -263,13 +263,26 @@ systems. In this context, interoperability can be considered a key enabling fact
 Digital Twin architectures, as interoperability is the key requirement factor of Industry 4.0 \cite{Jacoby2020}, supporting the 
 coordination and interaction of multiple digital models across heterogeneous technological platforms.
 
+\section{Edge Computing}
+\citeonline{Kong2022} define edge computing as a distributed computing architecture that extends cloud computing to the edge of the network,
+close to the data source. The edge is considered a feasible computing basis for offloading computing tasks in the Internet of Things 
+(IoT), as it can provide real-time data analysis, increase network capacity, and avoid data transmission congestion. In addition, 
+it avoids the high latency and bandwidth required for processing data in the cloud.\\
+As explained by \cite{Picone2023}, DTs cannot be delegated only to the cloud but should instead be handled as close as possible to 
+the physical assets in order to maximize their efficiency. Latency and reliability issues introduce disruption to DTs since the link 
+between the physical and the logical object is effective only if the refresh time is lower than the average access time of the 
+application using the twin. Edge computing paradigms allow overcoming these limitations, enabling DTs to operate with ultra-responsive 
+and ultra-reliable connectivity in multiple operational contexts \cite{Picone2023}.
+
 \section{Orchestration}
-According to the Cambridge dictionary orchestration can be defined as: \textit{"a careful arrangement of something to achieve a particular result."} \cite{Costa2023}.
-In this work the definition of orchestration can be understood as the coordinated execution of multiple computer systems, 
-applications, and services, to ensure that deployment, configuration and other processes are performed in the proper sequence. 
-Modern orchestration technologies encompass a wide spectrum of tools and platforms, each addressing specific aspects of service 
-coordination and contemporary solutions focus on declarative configuration, infrastructure as code, and automated deployments 
-pipelines \cite{Singhal2024}.
+In the context of this work, orchestration can be understood as the coordinated execution of multiple computer systems,
+applications, and services to ensure that deployment, configuration, and other processes are performed in the proper sequence.
+Modern orchestration technologies encompass a wide spectrum of tools and platforms, each addressing specific aspects of service
+coordination, with focus on declarative configuration, infrastructure as code, and automated deployment pipelines \cite{Singhal2024}.\\
+As defined by \citeonline{Nguyen2022} digital twin orchestration is the process of managing and coordinating the interactions
+between multiple digital twins that represent physical assets, systems, or processes. This allows for the creation of complex
+simulations, scenarios, and optimizations that can improve the performance, efficiency, and resilience of the physical counterparts
+and also facilitate the integration of data, analytics, and artificial intelligence across different domains and industries.
 
 \chapter{Related Work}
 \label{ch:related-work}
@@ -299,9 +312,9 @@ lifecycle management. As shown in Fig. \ref{fig:digital_twin_01}, the architectu
 data ingestion, storage, execution and application services with data analytics.
 
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{DTaaS_architecture.png}
-  \captionof{figure}{Proposed architecture for multiple digital twin hosting and orchestration}
-  \label{fig:digital_twin_01}
+    \includegraphics[width=0.7\textwidth]{DTaaS_architecture.png}
+    \captionof{figure}{Proposed architecture for multiple digital twin hosting and orchestration}
+    \label{fig:digital_twin_01}
 \end{center}
 
 The technologies selected for the architectural representation were not chosen and are used only as examples of how the layers work. 
@@ -341,8 +354,78 @@ The Dashboard service provides real-time operational visibility into the fleet o
 The 3D visualization service can be implemented using a range of technologies, with the main candidate being the Unity game engine, which can be used to render interactive three dimensional models of each monitored asset and animating it in response to the current model state. This allows the operators and other users to intuitively interpret the machine's condition through its digital representation. The 3D model assets are loaded from the object store at initialization, making the visualization service purely a consumer of the state produced by the execution layer.
 As defined in Section 4.5, the twin manager acts as the control panel to the operational lifecycle of all the DTs on the platform. It shows a interface in which operators can provision new DTs, monitor the status of running pods and decommission running DTs. 
 
-\section{Methodology}
-\section{Dissertation Timeline}
+\section{Methodology and Timeline}
+This research follows an applied investigation grounded in the Design Science Research (DSR) methodology as presented by \citeonline{Hevner2004}, 
+as it seeks to address practical and domain-specific problems in the industrial context, as it follows the absence of a structured 
+architecture for the orchestration of multiple concurrent Digital Twin instances. With this, the aim of this research work  is to 
+generate knowledge through direct applicability, culminating in the development of a technological artifact that is relevant to the 
+advancement of Industry 4.0.\\
+To achieve the stated objectives, an exploratory approach is adopted, systematically investigating the gaps identified in the state 
+of the art to propose a solution within a complex and evolving technological domain. The research design combines qualitative and 
+quantitative methods, as the nature of the problem requires both conceptual rigor in the architecture design phase and empirical 
+validation in the evaluation phase.\\
+The qualitative component manifests in the systematic literature review, as the elicitation of architectural requirements, and the 
+conceptual modeling of the proposed architecture. This phase establishes the theoretical knowledge foundations upon which the 
+architecture is constructed, ensuring that the proposed solution is grounded in the current state of the art and addresses the 
+existing gaps in the literature.\\
+The quantitative component is applied in the validation phase, where the empirical data is collected and analyzed, from the 
+developed architecture, to evaluate its performance. The evaluation metrics include latency, resource utilization, and system 
+throughput under representative operational conditions, measured through controlled benchmarks. This empirical evaluation is 
+intended to provide evidence of the solution's efficiency and scalability, enabling an evidence-based assessment of the proposed 
+architecture's suitability for real-world industrial deployments.
+
+\begin{figure}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{ganttchart}[
+    hgrid,
+    vgrid,
+    time slot format=isodate-yearmonth,
+    time slot unit=month,
+    calendar week text={},
+    title height=1,
+    title label font=\footnotesize,
+    bar label font=\footnotesize,
+    bar label node/.append style={align=right, text width=5.2cm},
+    bar height=0.55,
+    bar top shift=0.225,
+    x unit=1.2cm,
+    y unit title=0.65cm,
+    y unit chart=0.85cm
+]{2026-07}{2027-02}
+
+\gantttitlecalendar{year, month=shortname} \\
+
+\ganttbar[bar/.append style={fill=teal!60}]
+    {Architecture implementation}{2026-07}{2026-09} \\
+
+\ganttbar[bar/.append style={fill=teal!60}]
+    {Test DT implementation}{2026-08}{2026-10} \\
+
+\ganttbar[bar/.append style={fill=red!50}]
+    {Experiments and benchmarks}{2026-10}{2026-11} \\
+
+\ganttbar[bar/.append style={fill=violet!50}]
+    {Writing chapters: Methodology and Results}{2026-10}{2026-12} \\
+
+\ganttbar[bar/.append style={fill=green!50}]
+    {Final review and conclusion}{2027-01}{2027-02} \\
+
+\ganttbar[bar/.append style={fill=orange!70}]
+    {Master's thesis defense}{2027-02}{2027-02}
+
+\ganttlink{elem0}{elem1}
+\ganttlink{elem1}{elem2}
+\ganttlink{elem2}{elem3}
+\ganttlink{elem3}{elem4}
+\ganttlink{elem4}{elem5}
+
+\end{ganttchart}
+
+}
+\label{fig:gantt}
+\caption{Dissertation execution schedule.}
+\end{figure}
 
 % \subsubsubsection{Tomate}
 % \label{sec:tomate}

@@ -61,10 +61,20 @@
 
 
 \begin{abstract}
-  Enlish version of the plain ``resumo'' above. Hyphenization is automatically changed to english
-
+  Digital Twins (DTs) became a fundamental component of Industry 4.0, yet the current operation of DTs in industrial manufacturing 
+  environments do not cover the coordination and management of multiple concurrent instances across the heterogeneous shop-floor. 
+  Although the existing literature has architectural approaches to address the composition, orchestration, and infrastructure they 
+  lack a coherent design that treats scalability and interoperability as first-class requirements. To cover this gap, this work 
+  proposes an architecture for the deployment, orchestration and lifecycle management of multiple DT instances in the industrial 
+  shop-floor environment. This architecture introduces a containerized unit called ``DTPod'' that encapsulates the state management 
+  and data-driven inference logic to act as the digital counterpart of the physical asset. It also has a Twin Manager component 
+  responsible for provisioning, monitoring, and decommissioning of the pod instances through a container orchestration platform. 
+  The data collected from the physical assets is handled by a dedicated ingestion layer combining a message broker, schema registry, 
+  and event router, with potential ontological modeling based via knowledge graphs. The semantic interoperability follows the concepts 
+  of the Conceptual Interoperability Model (LCIM) and can be addressed through a standard data exchange pattern, such as OPC-UA. 
+  Finally, a proof-of-concept instantiation is planned to evaluate the architecture under realistic conditions.
   \vspace{\baselineskip} 
-  \textbf{Keywords:} Keyword. Another Compound Keyword. Bla.
+  \textbf{Keywords:} Digital Twins. Orchestration. Lifecycle Management. Architecture.
 \end{abstract}
 
 \listoffigures*  % O * evita que apareça no sumário
