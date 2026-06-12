@@ -4,19 +4,68 @@
 
 \apendices
 
-\chapter{Exemplo de Apêndice}
-\label{ch:apendice}
+\chapter{Systematic Literature Review Table}
+\label{apx:systematic_literature_review_table}
 
-% Uso de \cite em apêndice/anexo como se fossem antes do \bibliography{}.  NBR
-% 14724 e NBR 6023, assim como os documentos da BU não especificam nada sobre
-% citações dentro de apêndices/anexos. No entanto, em email trocado com a BU, a
-% orientação foi de usar \cite{} normalmente e deixar que as referências sejam
-% listadas na única bibliografia do documento, mesmo que esta esteja antes dos
-% apêndices. A argumentação é que apêndices e anexos são numerados e fazem parte
-% do documento, logo suas referências devem ser listadas como referências do
-% documento. Além disso as normas não prevem segmentar as referências por
-% capítulos.
-\cite{turing1937} \lipsum[1] 
+\setlength{\LTpre}{10pt}
+
+\footnotesize 
+
+\begin{longtable}{
+    >{\raggedright\arraybackslash\hspace{0pt}}p{1.8cm} % Autor
+    >{\raggedright\arraybackslash\hspace{0pt}}p{1.5cm} % Setor (ajustado para quebrar texto)
+    >{\raggedright\arraybackslash\hspace{0pt}}p{5.5cm} % Contribuição Principal
+    >{\raggedright\arraybackslash\hspace{0pt}}p{2.7cm} % Tecnologias
+    >{\raggedright\arraybackslash\hspace{0pt}}p{2.4cm} % Tipo de Impl.
+}
+    \caption{Summary of Related Works on Digital Twins}
+    \label{tab:survey_dt} \\
+    \toprule
+    \textbf{Reference} & \textbf{Sector} & \textbf{Key contribution} & \textbf{Technology} & \textbf{Implementation type} \\
+    \midrule
+    \endfirsthead
+    
+    \multicolumn{5}{l}{\footnotesize\textit{Continuation of the Table \ref{tab:survey_dt}}} \\
+    \toprule
+    \textbf{Reference} & \textbf{Sector} & \textbf{Key contribution} & \textbf{Technology} & \textbf{Implementation type} \\
+    \midrule
+    \endhead
+    
+    \midrule
+    \multicolumn{5}{r}{\footnotesize\textit{Continued on the next page.}} \\
+    \endfoot
+    
+    \bottomrule
+    \multicolumn{5}{l}{\footnotesize Source: The author (2026).} \\
+    \endlastfoot
+    
+    % --- CONTEÚDO DA TABELA ---
+    
+    \citeonline{Juhlin2025} & Manufacturing & Proposed the CRADLE architecture, an interoperable DT architecture for cross-vendor integration & AAS, OPC-UA, AutomationML, Functional Mockup Interface, MQTT & Architectural Proposal + Framework + Prototype \\
+    \citeonline{Pan2025} & Generic & Proposes a Digital Twin Network Architecture and a taxonomy system to define a DT fidelity, maturaty and complexity & - & Architectural Proposal + Survey \\
+    \citeonline{Schroeder2021} & Generic & Methodology for implementing DTs and the concept of aggregated DTs, where one DT is composed of smaller DTs & AutomationML, Python, HTML, OpenGL, WatchDog, MATLAB, XML & Architectural Proposal + Proof of Concept \\
+    \citeonline{Barbone2024} & Automotive/\hspace{0pt}Urban Mobility & Proposes the Digital Twin Continuum as a way to coordenate multiple DTs across edge-cloud environment & Docker, Kubernetes, White Label Digital Twin Library, Prometheus, Grafana, Helm & Prototype + Framework \\
+    \citeonline{Alhazmi2025} & Generic/\hspace{0pt}Smart City & Layered architecture to providade data distribution in a MDTN contex & MQTT, JWTs & Architectural Proposal + Framework \\
+    \citeonline{Mahoro2023} & Generic & Prposes Composite Digital Twin, a digital twin made of smaller ones to represent a complex system & Thing in The Future (Thing’In) & Architectural Proposal + Framework \\
+    \citeonline{Merkle2019} & Energy/\hspace{0pt}Automotive Battery & Middleware framework to control and operate a fleet of DTs of eletric car batteries & AWS, MQTT, AWS S3, AWS DynamoDB, AWS Lambda, Python & Framework + Proof of Concept \\
+    \citeonline{Qian2024} & Smart/\hspace{0pt}Generic & Proposes a distributed data layer to receive data from CPS and run multiple DTs & - & Architectural Proposal \\
+    \citeonline{Picone2023} & Generic & Proposes an Edge Digital Twin, an architecture to run DTs in the edge & Java, MQTT, JSON, CoAP, Graphite, Eclipse Ditto (como comparador edge), Azure (como comparador cloud) & Architectural Proposal + Proof of Concept \\
+    \citeonline{Tripathy2024} & Manufacturing & Proposal of a distributed solution architecture for condition monitoring and PLM based on DTs an architecture using the EAF & Eclipse Arrowhead Framework, EDMtruePLM & Architectural Proposal \\
+    \citeonline{Wang2025} & Energy & Focus on emantic interoperability method based on ontology with multi fusion models for DTs & - & Framework \\
+    \citeonline{Lai2024} & Smart Cities & Addresses the concept of multiple DTs by focusing on how individual primitive models can be aggregated and orchestrated to represent complex large-scale environments & Eclipse Ditto, Microsoft Azure lots of things from azure, MQTT, Kafka, InfluxDB, Grafana, MongoDB & Mapping Study + Architectural Proposal + Proof of Concept \\
+    \citeonline{Maree2024} & Automotive & Presents an architecture for an IoT DTaaS plataform that facilitates the provisioning, management, and monitoring of heterogeneous IoT devices with DTAs and DTIs and TDTA & MQTT, gRPC & Architectural Proposal + Proof of Concept \\
+    \citeonline{Martella2025} & Generic & Proposes a federation of DTs using the NGSI-LD standards & NGSI-LD, JSON-LD, Scorpio Context Broker, FIWARE Data Space Connector, Gaia-X Trust Framework & Architectural Proposal + Proof of Concept \\
+    \citeonline{Monsalve2021} & Energy & A novel framework architecture for distributed digital twins in power systems using MAS & Python, Docker & Architectural Proposal + Framework \\
+    \citeonline{Kuruppuarachchi2023} & Manufacturing & Proposes an architecture for Composite Digital Twin designed to enable and manage ecosystems in a secure manner & Docker, Hyperledger fabric, node.js, IPFS & Architectural Proposal \\
+    \citeonline{Nie2023} & Manufacturing & Proposal for a cloud-edge orchestration architecture based on MAS and DT to optimize production control in distributed manufacturing environments & Python, Aliyun (Alibaba Cloud) & Architectural Proposal + Proof of Concept + Framework \\
+    \citeonline{Nguyen2024} & Smart Cities & Proposes a 4 layer framework for DT orchestration & xData (NICT Japan), Eclipse Ditto, VMs, MQTT & Framework + Proof of Concept \\
+    \citeonline{Xu2024} & Manufacturing & Proposal for a Cognitive Digital Twin framework designed for collaborative manufacturing with multiple robots (MRCMfg) & MuJoCo, ROS (Robot Operating System), URScript & Framework + Proof of Concept \\
+    \citeonline{Ali2025} & Manufacturing & Proposes a blockchain based framework for cross-domain DTs & Hyperledge Fabric & Framework \\
+    \citeonline{Cakir2025} & Energy & Proposes the Internet of Twins, a disaggregated DT deployed in a distributed cloud architecture and developed DT as a Plataform with knowledge graph based orchestration & gRPC, JSON, Python, Golang & Architectural Proposal + Proof of Concept \\
+\end{longtable}
+
+% Restaura o tamanho da fonte padrão para o restante do documento
+\normalsize
 
 \imprimirindice
 

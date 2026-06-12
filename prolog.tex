@@ -4,13 +4,13 @@
 \imprimircapa%
 \imprimirfolhaderosto*
 % Atenção! esse \protect é importante
-\protect\incluirfichacatalografica{ficha.pdf}
-\imprimirfolhadecertificacao
+% \protect\incluirfichacatalografica{ficha.pdf}
+% \imprimirfolhadecertificacao
 
 
-\begin{dedicatoria}
-  Este trabalho é dedicado à wikipedia e ao stackoverflow. Essa frase está aqui apenas para testar o alinhamento e as margens
-\end{dedicatoria}
+% \begin{dedicatoria}
+%   Este trabalho é dedicado à wikipedia e ao stackoverflow. Essa frase está aqui apenas para testar o alinhamento e as margens
+% \end{dedicatoria}
 
 
 \begin{agradecimentos}
@@ -18,46 +18,59 @@
 \end{agradecimentos}
 
 
-\begin{epigrafe}
-  For a number of years I have been familiar with the observation that the quality of programmers is a decreasing function of the density of go to statements in the programs they produce \\
-  \cite{dijkstra1968}
-\end{epigrafe}
+% \begin{epigrafe}
+%   For a number of years I have been familiar with the observation that the quality of programmers is a decreasing function of the density of go to statements in the programs they produce \\
+%   \cite{dijkstra1968}
+% \end{epigrafe}
 
 
 \begin{resumo}[Resumo]
-  Aqui deve ser inserido um resumo de 150 a 500 palavras (limitação de tamanho dada pela BU). A linguagem deve ser português e a hifenização já foi alterada. O resumo em português deve preceder o resumo em inglês, mesmo que o trabalho seja escrito em inglês. A BU também diz que deve ser usada a voz ativa e o discurso deve ser na 3ª pessoa. A estrutura do resumo pode ser similar a estrutura usada em artigos: Contexto -- Problema -- Estado da arte -- Solução proposta  -- Resultados.
+  Os Gêmeos Digitais (GDs) se tornaram um componente fundamental para a indústria 4.0, entranto a utilização atual de GDs em 
+  ambientes de manufatura industrial não abrange a coordenação e gerenciamento de múltiplas instâncias simultâneas em um chão 
+  de fábrica heterigêneo. Embora a literatura existente apresente abordagens arquiteturais para lidar com a composição, orquestração
+  e infraestrutura, elas carecem de um projeto coerente que trate a escalabilidade e a interoperabilidade como requisito de maior 
+  importância. Para preencher essa lacuna, este trabalho propõe uma arquitetura para a implantação, orquestraçãoe gerenciamento do 
+  ciclo de vida de múltiplas instâncias de Gêmeos Digitais no ambiente de chão de fábrica industrial. Essa arquiteturaintroduz uma 
+  unidade conteinerizada chamada ``DTPod'' que encapsula o gerenciamento de estado e a lógica de inferência orientada a dados para
+  atuar como a contraparte digital do ativo físico. Ela também possui um Gerenciador de Gêmeos como um componente responsável pelo 
+  provisionamento, monitoramento e desativação das instâncias do \textit{pod} por meio de uma plataforma de orquestração de contêineres.
+  Os dados coletados dos ativosfísicos são tratados por uma caamda de ingestão dedicada que combina um agente de mensagens, um registro 
+  de esquemas e um roteador de eventos, e uma possível modelagem ontológica baseada em grafos de conhecimento. A interoperabilidade
+  semântica segue os conceitos do Modelo de Interoperabilidade Conceitual (\textit{Conceptual Interoperability Model}) e pode possívelmente
+  ser abordada por meio de um padrão de troca de dados, como o OPC-UA. Por fim, é prevista uma prova de conceitos para avaliar a
+  arquitetura em condições reais.
 
   % Atenção! a BU exige separação através de ponto (.). Ela recomanda de 3 a 5 keywords
   \vspace{\baselineskip} 
-  \textbf{Palavras-chave:} Palavra-chave. Ponto como separador. Bla.
+  \textbf{Palavras-chave:} Gêmeos digitais. Orquestração. Gestão do ciclo de vida. Arquitetura.
 \end{resumo}
 
 
-\begin{resumo}[Resumo Estendido]
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Atenção: normas e templates contraditórios!!!                    %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% - Modelo da BU: https://repositorio.ufsc.br/handle/123456789/197458
-% - A BU exige no **mínimo** 2 páginas e no **máximo** 5
-% - Regimento do PPGCC, Art 40 Entende-se  por  resumo  estendido  um  documento  que  contenha  as  informações  mais  relevantes  de  cada  capítulo  da  tese  ou  da  dissertação.
-% O mais seguro é ignorar o regimento e seguir a BU.
-    % Atenção! A BU diz que o resumo **deve** conter as seções abaixo!
-  \section*{Introdução} % Deve ser  subsection*, devido a formatação usada no modelo
-  A hifenização é alterada para \texttt{brazil}, mesmo para documentos em inglês. Descrever brevemente esses itens exigidos pela BU. Como a RN 95/CUn/2017 é mais recente e impõe outras regras a revelia de regimentos e regulamentos, é mais sábio obedecê-la. Lembre que esse resumo estendido deve term entre 2 e 5 páginas.
+% \begin{resumo}[Resumo Estendido]
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Atenção: normas e templates contraditórios!!!                    %%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % - Modelo da BU: https://repositorio.ufsc.br/handle/123456789/197458
+% % - A BU exige no **mínimo** 2 páginas e no **máximo** 5
+% % - Regimento do PPGCC, Art 40 Entende-se  por  resumo  estendido  um  documento  que  contenha  as  informações  mais  relevantes  de  cada  capítulo  da  tese  ou  da  dissertação.
+% % O mais seguro é ignorar o regimento e seguir a BU.
+%     % Atenção! A BU diz que o resumo **deve** conter as seções abaixo!
+%   \section*{Introdução} % Deve ser  subsection*, devido a formatação usada no modelo
+%   A hifenização é alterada para \texttt{brazil}, mesmo para documentos em inglês. Descrever brevemente esses itens exigidos pela BU. Como a RN 95/CUn/2017 é mais recente e impõe outras regras a revelia de regimentos e regulamentos, é mais sábio obedecê-la. Lembre que esse resumo estendido deve term entre 2 e 5 páginas.
   
-  \lipsum[1]
-  \section*{Objetivos} 
-  \lipsum[21]
-  \section*{Metodologia} 
-  \lipsum[3]
-  \section*{Resultados e Discussão} 
-  \lipsum[4]
-  \section*{Considerações Finais} 
-  \lipsum[5]
+%   \lipsum[1]
+%   \section*{Objetivos} 
+%   \lipsum[21]
+%   \section*{Metodologia} 
+%   \lipsum[3]
+%   \section*{Resultados e Discussão} 
+%   \lipsum[4]
+%   \section*{Considerações Finais} 
+%   \lipsum[5]
 
-  \vspace{\baselineskip}  % Atenção! manter igual ao resumo
-  \textbf{Palavras-chave:} Palavra-chave. Outra Palavra-chave composta. Bla.
-\end{resumo}
+%   \vspace{\baselineskip}  % Atenção! manter igual ao resumo
+%   \textbf{Palavras-chave:} Palavra-chave. Outra Palavra-chave composta. Bla.
+% \end{resumo}
 
 
 \begin{abstract}
@@ -79,25 +92,25 @@
 
 \listoffigures*  % O * evita que apareça no sumário
 \listoftables*
-\listoflistings*  
-\listofalgorithms*
+% \listoflistings*  
+% \listofalgorithms*
 
 \listadesiglas[5em]
 
-\begin{listadesimbolos}
-  $\gets$   & Atribuição \\
-  $\exists$   & Quantificação existencial \\
-  $\rightarrow$   & Implicação \\
-  $\wedge$   & E lógico \\
-  $\vee$   & Ou lógico \\
-  $\neg$   & Negação lógica \\
-  $\mapsto$   & Mapeia para \\
-  $\sqsubseteq$   & Subclasse (em ontologias) \\
-  $\subseteq$   & Subconjunto: $\forall x\;.\; x \in A \rightarrow x \in B$ \\
-  $\langle\ldots\rangle$ & Tupla \\
-  $\forall$   & Quantificação universal \\
-  mmmmm & Nenhum sentido, apenas estou aqui para demonstrar a largura máxima dessas colunas. Ao abrir o ambiente \texttt{listadesimbolos}, pode-se fornecer um argumento opcional indicando a largura da coluna da esquerda (o default é de 5em): \texttt{\textbackslash{}begin\{listadesimbolos\}[2cm] .... \textbackslash{}end\{listadesimbolos\}} \\
-\end{listadesimbolos}
+% \begin{listadesimbolos}
+%   $\gets$   & Atribuição \\
+%   $\exists$   & Quantificação existencial \\
+%   $\rightarrow$   & Implicação \\
+%   $\wedge$   & E lógico \\
+%   $\vee$   & Ou lógico \\
+%   $\neg$   & Negação lógica \\
+%   $\mapsto$   & Mapeia para \\
+%   $\sqsubseteq$   & Subclasse (em ontologias) \\
+%   $\subseteq$   & Subconjunto: $\forall x\;.\; x \in A \rightarrow x \in B$ \\
+%   $\langle\ldots\rangle$ & Tupla \\
+%   $\forall$   & Quantificação universal \\
+%   mmmmm & Nenhum sentido, apenas estou aqui para demonstrar a largura máxima dessas colunas. Ao abrir o ambiente \texttt{listadesimbolos}, pode-se fornecer um argumento opcional indicando a largura da coluna da esquerda (o default é de 5em): \texttt{\textbackslash{}begin\{listadesimbolos\}[2cm] .... \textbackslash{}end\{listadesimbolos\}} \\
+% \end{listadesimbolos}
 
 \tableofcontents*%
 

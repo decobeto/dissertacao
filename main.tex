@@ -1,8 +1,15 @@
-\documentclass[]{lapesd-thesis}
+\documentclass[english]{lapesd-thesis}
 
 % Outros \usepackage{}
 \usepackage{capt-of}
 \usepackage{pgfgantt}
+% \usepackage{rotating}   % sidewaystable
+% \usepackage{ragged2e}   % RaggedRight nas colunas
+% \newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Configurações da classe (dados do trabalho)                  %%%
@@ -11,8 +18,13 @@
 % Informações para capa e folha de rosto/certificacao
 \titulo{An Orchestration Architecture for Deployment and Management of Digital Twins in Industrial Environments}
 \autor{André Roberto Alves de Oliveira}
-\data{1 de agosto de 2019} % ou \today
-\tese % ou \dissertacao
+% \data{1 de agosto de 2019} % ou \today
+\data{\today} % ou \today
+% \tese % ou \dissertacao
+\dissertacao
+\preambulo{Trabalho de qualificação submetido ao Programa de
+Pós-Graduação em Ciência da Computação como requisito parcial
+para a obtenção do título de Mestre em Ciência da Computação.}
 \titulode{Mestre em Ciência da Computação}
 \orientador{Prof. Frank Augusto Siqueira, Dr.}
 % \coorientador{Prof. Lars Thørväld, Dr.}
@@ -33,10 +45,10 @@
 % As regras da BU agora exigem que Dr. apareça depois do nome
 % Dica: para gerar Profᵃ. use Prof\textsuperscript{a}.
 % Dica 2: para feminino use \orientadora e \coorientadora
-\membrobanca{Prof. Valerie Béranger, Dr.}{Universidade Federal de Santa Catarina}
-\membrobanca{Prof. Mordecai Malignatus, Dr.}{Universidade Federal de Santa Catarina}
-\membrobanca{Prof. Huifen Chan, Dr.}{Universidade Federal de Santa Catarina}
-\coordenador{Prof. Charles Palmer, Dr.}
+\membrobanca{Prof. Rodrigo Pereira, Dr.}{Universidade Federal de Santa Catarina}
+\membrobanca{Prof. Patrícia Plentz, Dr.}{Universidade Federal de Santa Catarina}
+\membrobanca{Prof. Eduardo Camilo Inácio, Dr.}{Universidade Federal de Santa Catarina}
+% \coordenador{Prof. Charles Palmer, Dr.}
 
 
 % Ativa indíce remissivo. Precisa estar aqui, não funciona no .cls nem no

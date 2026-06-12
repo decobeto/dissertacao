@@ -2,23 +2,70 @@
 
 \chapter{Introduction}
 \label{ch:introduction}
+The rising adoption of Industry 4.0 technologies in industrial manufacturing environments has elevated \DTs 
+from a theoretical concept explored in academia to an operational necessity. In this context is the concept of a \DT, 
+which functions as a virtual replica of a physical asset, continuously updated through automated bidirectional data 
+flows \cite{Fuller2020, Kritzinger2018}. \DTs are taking a central position in new-generation intelligent/smart manufacturing, 
+which is shifting from knowledge-based intelligent manufacturing to data-driven and knowledge-enable smart manufacturing, in 
+which the term ``smart'' refers to the creation and use of data \cite{Tao2019b}. As manufacturing systems gain more complexity, 
+the ability to monitor, simulate and reason about physical assets in real time becomes a operational advantage. However, the 
+deployment of \DTs in real industrial settings rarely occurs in isolation. As established by the Digital Twin Shop-Floor paradigm 
+present by \citeonline{Tao2017ShoopFloor}, true smart manufacturing requires a fundamental transition from isolated asset models to 
+fully interconnected ecosystems. A typical shop-floor comprises of multiple heterogeneous assets, each requiring its own \DT 
+instance, data pipeline, and lifecycle management. This introduces a class of infrastructure and coordination challenge that 
+individual \DT architecture are not designed to address.\\
+Through the systematic review presented in Section~\ref{ch:related-work} we show that the existing literature investigates the communication standards, 
+composition of \DTs, and internal architectures. Although, the problem of running multiple \DTs instances over a shared infrastructure 
+in a scalable, interoperable and operationally continuous way remains not fully addressed.\\
+This dissertation addresses this gap by proposing, implementing and evaluating an orchestration architecture for the deployment 
+and management of multiple \DT instances in industrial environments. The proposed architecture presented in Section~\ref{ch:proposal} is structured 
+across five layers and introduces the concept of the \DTPod as a containerized, self-contained runtime for individual \DT instances. 
+The architecture is designed to operate across edge and cloud infrastructure, enforce semantic interoperability between \DT 
+instances, and support lifecycle management at a fleet scale.
 
-\chapter{Problem Context}
+\section{Problem Context}
 \label{ch:problem-context}
-\chapter{Objectives}
+Since increasing productivity is always one of the goals of industries, and increasing efficiency, reducing downtime, and having a 
+quick response to possible failures are also key objectives, one way to achieve these goals is through Industry 4.0. 
+According to \citeonline{Jacoby2020}, the fourth industrial revolution and its digital transformation is revolutionizing industrial 
+production as it is about optimization and automation of the previously introduced computerization by intelligent networking of 
+machines and processes. Some central elements of this new manufacturing paradigm are the already-existing concepts of 
+\IoT, Digital Twins (DT), \AI, \ML, Big Data, Cognitive Services, and their application in industrial production \cite{Jacoby2020}. 
+In this context, Digital Twins have emerged as a key enabling technology across multiple industrial domains, like manufacturing, 
+aerospace and automotive industries \cite{Kang2024}. \DTs provide the ability to monitor, simulate and predict the behavior of 
+already existing physical assets, through the continuously exchange of information between physical and digital counterparts. 
+In aerospace industries, as reported by \citeonline{Pierce2023} in the development of NASA's Digital Twin Orion SysML Model, 
+\DTs can be used to provide detailed design insight, giving information on the spaceship subsystems to provide adequate standard 
+engineering support for flight operations and support real-time flight operations, helping the mission support and the pilot. As 
+appointed by \citeonline{Kritzinger2018}, a manufacturing \DT offers an opportunity to simulate and optimize the production system, 
+not only enabling a detailed visualization of the manufacturing process from a single component to the whole assembly line but also 
+helping with logistical aspects. These use cases share a common characteristic as they do not operate as isolated instances, 
+and the operational scale implied by these domains requires a different type of deployment which is the primary motivation for 
+this work.\\
+The deployment of \DTs at this scale introduces challenges that extend well beyond the design of individual twin instances. 
+Provisioning a new twin when an asset is added to the shop-floor, routing sensor data to the correct instance, recovering from pod 
+failures, and coordinating model updates without interrupting ongoing operations are tasks that are trackable; however, when 
+considered at a large scale, they constitute an orchestration problem that has both industrial and academic dimensions. From an 
+industrial perspective, manufacturing environments impose strict operational constraints, such as edge nodes with limited computing 
+resources, network reliability, and real-time data processing with latency that can be unfeasible in cloud architectures. From the 
+academic perspective, as pointed out by the systematic review present in the Related Work section, while composition, coordination, 
+and infrastructure challenges have been investigated, they do not intersect as a scalable, interoperable architecture focused on 
+the orchestration of the industrial shop-floor.
+
+\section{Objectives}
 \label{ch:objectives}
 
 The objective of this dissertation is to design, implement, and evaluate an orchestration
 architecture for deployment and management of multiple Digital Twin instances in industrial
 manufacturing environments. As the work aims to:
 \begin{itemize}
-    \item Propose a layered architecture for running and orchestrating digital twins, supporting it full operational lifecycle within the twins instances over a shared computing infrastructure spanning through edge and cloud.
+    \item Propose a layered architecture for running and orchestrating digital twins, supporting the full operational lifecycle within the \DT instances over a shared computing infrastructure spanning from edge to cloud.
     \item Design a \DT Pod model that encapsulates the state management and data-driven inference logic of an individual twin as an isolated and containerized unit, along with the 3D simulation tool responsible for demonstrating the machine's operation in real time.
     \item Implement a proof of concept instantiation of the proposed architecture using a representative industrial digital twin, sufficient to validate the orchestration mechanisms under realistic operational conditions.
     \item Evaluate the proposed architecture against the requirements of scalability between instances, and operational continuity during model updates and pod lifecycle events.
 \end{itemize}
 
-\chapter{Contributions}
+\section{Contributions}
 \label{ch:contributions}
 This dissertation presents the following contributions:
 
@@ -27,14 +74,13 @@ This dissertation presents the following contributions:
     \item A edge-cloud model for Digital Twin execution grounded in the containerization and orchestration principles, designed to be deployable on lightweight edge distributions, suitable for industrial environments.
 \end{enumerate}
 
-\chapter{Document Structure}
+\section{Document Structure}
 \label{ch:document-structure}
-The Section 2 defines the theoretical background concepts and definitions necessary to
-support the proposed work. Section 3 conducts studies in related works and it differences
-to the proposed approach. Section 4 presents the detailed architecture created, describing
-each architectural layer. Section 5 explains the following methodology which will be used to
-develop the proof of concept implementation and evaluation. And finally Section 6 presents the
-schedule in which the full research will be developed.
+The Section~\ref{ch:theoretical-background} defines the theoretical background concepts and definitions necessary to
+support the proposed work. Section~\ref{ch:related-work} conducts studies in related works and it differences
+to the proposed approach. Section~\ref{sec:architecture} presents the detailed architecture created, describing
+each architectural layer. Finally, Section~\ref{sec:methodology_and_timeline} explains the following methodology which will be used to
+develop the proof of concept implementation and evaluation, and the schedule in which the full research will be developed.
 
 \chapter{Theoretical Background}
 \label{ch:theoretical-background}
@@ -44,6 +90,7 @@ of this research. It introduces the fundamental concepts, architectures and tech
 aspects related to Digital Twins, which form the basis for the proposed approach.
 
 \section{Digital Twin}
+\label{sec:digital_twin}
 \subsection{Conceptual Foundations}
 
 The concept of Digital Twin originated from Michael Grieves' work on \PLM 
@@ -114,7 +161,7 @@ from dynamic \CPS in a definition that can be described as canonical to the fiel
 the transition from a digital shadow to a full digital twin imposes requirements that transcend simple connectivity.
 
 \section{Internal Reference Architecture and Digital Twin Lifecycle}
-
+\label{sec:internal_reference_and_dt_lifecycle}
 Product lifecycle management is the business activity of managing, in the most effective way, the whole lifecycle of products
 manufactured by a given company, since their conception and design until their retirement and disposal \cite{Tao2017PLM}.
 The digital twin is not one complete model of the physical product, but a set of linked operational data artifacts and
@@ -188,6 +235,7 @@ reported by \citeonline{Qi2021}:
 \end{itemize}
 
 \section{Interoperability}
+\label{sec:interoperability}
 %%\subsubsection{Definition of Interoperability}
 According to the ISO/IEC 25010 standard, interoperability can be defined as: \textit{"degree to which two or more systems, products or components can exchange information and use the information that has been exchanged"} \cite{David2024}, 
 which is fundamental for enabling complex and heterogeneous systems, devices, and applications to exchange information and
@@ -205,6 +253,7 @@ As digital infrastructures become increasingly interconnected, interoperability 
 environments or platforms.
 
 \subsection{Levels of Interoperability}
+\label{sec:levels_of_interoperability}
 In technical systems, multiple levels of interoperability must be considered \cite{Jacoby2020}, reflecting the increasing complexity
 of system integration. Reference frameworks are useful instruments to position and relate to one another, but also to compare, 
 concepts, principles, methods, standards, models and tools in a certain domain of concern \cite{Vernadat2010}. 
@@ -249,7 +298,7 @@ scalability, non-modular architectures, legacy systems, and many more as being i
 To address these challenges, some enabling technologies and industrial standards have been developed to support interoperability in 
 Digital Twin environments. According to \citeonline{Jacoby2020}, achieving interoperability on a global scale requires formal 
 standardization. Most organizations rely on open standards as \textit{\OPCUA}, 
-\textit{\MQTT}, RESTful APIs, regulatory guidelines like ISO/IEC/SAREF and structured 
+\textit{\MQTT}, \REST \APIs, regulatory guidelines like ISO/IEC/SAREF and structured 
 representation of \DTs like \AAS (Asset Administration Shell), created by the collective work of several german institutions including 
 the industrial associations ZVEI, VDMA, BITKOM and researches from the VDI/VDE \cite{Adolphs2015}, as necessary enablers for complex 
 integrations \cite{Acharya2026}. At the communication level, protocols such as \textit{\OPCUA} provide a plataform-independent 
@@ -264,6 +313,7 @@ Digital Twin architectures, as interoperability is the key requirement factor of
 coordination and interaction of multiple digital models across heterogeneous technological platforms.
 
 \section{Edge Computing}
+\label{sec:edge_computing}
 \citeonline{Kong2022} define edge computing as a distributed computing architecture that extends cloud computing to the edge of the network,
 close to the data source. The edge is considered a feasible computing basis for offloading computing tasks in the \IoT, as it can provide real-time data analysis, increase network capacity, and avoid data transmission congestion. In addition, 
 it avoids the high latency and bandwidth required for processing data in the cloud.\\
@@ -274,17 +324,77 @@ application using the twin. Edge computing paradigms allow overcoming these limi
 and ultra-reliable connectivity in multiple operational contexts \cite{Picone2023}.
 
 \section{Orchestration}
+\label{sec:orchestration}
 In the context of this work, orchestration can be understood as the coordinated execution of multiple computer systems,
 applications, and services to ensure that deployment, configuration, and other processes are performed in the proper sequence.
 Modern orchestration technologies encompass a wide spectrum of tools and platforms, each addressing specific aspects of service
 coordination, with focus on declarative configuration, infrastructure as code, and automated deployment pipelines \cite{Singhal2024}.\\
-As defined by \citeonline{Nguyen2022} digital twin orchestration is the process of managing and coordinating the interactions
+As defined by \citeonline{Nguyen2024} digital twin orchestration is the process of managing and coordinating the interactions
 between multiple digital twins that represent physical assets, systems, or processes. This allows for the creation of complex
 simulations, scenarios, and optimizations that can improve the performance, efficiency, and resilience of the physical counterparts
 and also facilitate the integration of data, analytics, and artificial intelligence across different domains and industries.
 
 \chapter{Related Work}
 \label{ch:related-work}
+The orchestration and interoperability of multiple \DTs have become a key issue in the design of industrial \DT ecosystems, 
+which led to the rise of a number of architectural proposals based on solving common issues: 
+\begin{itemize}
+    \item How \DTs can be coordinated during runtime?
+    \item What kind of architecture and infrastructure should underpin the operation and deploy of several \DTs at a scale?
+    \item How \DTs can be composed using the \DTs of their components? 
+\end{itemize} 
+The area of coordination and orchestration is unified in terms of recurring theme of an orchestration layer or agent facilitating 
+communications between the peer components of \DTs. For example, \cite{Monsalve2021} uses an architecture of \MAS, 
+these agents cooperate with each other to solve problems and make decisions, they work as a way to give decentralized intelligence 
+to the \DTs, in the domain of power systems. The system utilizes \DTCs, which are containerized agents that are 
+automated and provide presentation of grid and power components, and a \DTM, which is an orchestration component 
+that works controlling the \DTCs. \cite{Xu2024} have proposed an approach to the \CDT consisting of using 
+multi-layered designs to allow interaction between \DTs in physical and virtual environments. The authors also use a \MAS approach as 
+a way to organize the production integration the \DT models to the \MAS agents, the authors divide the agents into three categories, 
+the task agents, workstation agents and the robot agents. \cite{Nguyen2024} also proposes a multi-layered design, an orchestration 
+framework structured in four functional layers: federation, translation, brokering and synchronization. This allows for efficient 
+coordination between \DT models. \cite{Nie2023} proposes the combination \DTs and \MAS in cloud-edge orchestration, organizing 
+geographically distributed manufacturing resources. \cite{Pan2025} presents a \DTN architecture functioning 
+as an orchestration space for several connected \DT models and managing their lifecycle. \cite{Alhazmi2025} study \DTNs too, 
+introducing five layers in their multi-layer architecture for efficient data dissemination of \DTs based on \MQTT.\\
+Interoperability and data heterogeneity represent a persistent obstacle across these orchestration approaches. \cite{Juhlin2025} 
+handle this with the CRADLE architecture (short for Cross-Vendor Asset Digital Twin Architecture), an interoperable and modular \DT 
+framework that combines multiple interoperability standards to supper cross-vendor \DT integration, and used a paper machine to do a 
+proof of concept. \cite{Wang2025} address semantic heterogeneity through an ontology-based fusion model, allowing \DTs from different 
+domains to exchange information between themselves in a semantically consistent manner. \cite{Ali2025} approaches the cross-domain 
+interoperability through a blockchain-based framework, with a focus on security in IoT-driven manufacturing environments.\\
+At the level of infrastructure, a related research line looks into the provision, lifecycle management, and scalability issues of 
+the \DTs ecosystems. In \cite{Talasila2023}, the concept of \DTaaS is introduced as a centralized platform 
+for creation and lifecycle management of \DTs in a standardized way. \cite{Cakir2025} builds on \DTaaS by introducing the \IoTw approach and proposing a Digital-Twin-as-a-Platform (DTaaP), stating that scalability is achieved by disaggregation of 
+\DT functionalities within the distributed cloud architecture. \cite{Frasheri2025} contributes another piece to \DT infrastructure by 
+suggesting a federated \DTaaS architecture, aligning the need for distributed orchestration of \DTs with a federated \DTaaS deployment 
+architecture. \cite{Merkle2019} introduces a control master handler for managing a fleet of entities within cloud middleware. 
+\cite{Qian2024} suggest using a distributed data layer as a solution to large-scale data input issue coming from multiple \CPS, 
+building hierarchical architecture for synthesizing \DT techniques as a separate layer within their architecture. \cite{Picone2023} 
+provides a distributed microservice architecture to deploy multiple \EDTs within the locality, among the edge 
+nodes with multiple \DTs, hence bringing the \DTs closer to their physical counterparts. The problems of centralized scalability are 
+addressed by \cite{Tripathy2024} by means of the decentralized edge approach via the Eclipse Arrowhead Framework, which results in 
+the industrial scenario being set up in the form of a \SoS. The work of \cite{Maree2024} is dedicated to the issue of 
+\DaaS for \IoT devices and presents the concept of provisioning service as the stateful service managing the 
+application and updating multiple \DTIs. Federated models are extended by \cite{Martella2025}, proposing 
+federated \DTs as a way to manage distributed data in a \DTE.\\
+In relation to the composition, various research studies have investigated how complex \DTs can be built from smaller \DTs. 
+For example, \cite{Schroeder2021} developed a model of ``Aggregate \DTs'' based on a bottom-up architectural approach. 
+Meanwhile, \cite{Mahoro2023} introduced ``\CDTs'' which are created using \ADTs. 
+Following the above research, \cite{Kuruppuarachchi2023} extended the \CDT model to solve interoperability issues within \DT silos 
+using a \DTConnector to provide an interface between the individual twins. The same can be applied 
+to \cite{Talasila2025}, who used a compositional \DT strategy, thus allowing for modular independent digital twins to form 
+representation of larger-scale systems. \cite{Lai2024} used a  multi-layered architecture for the topic of smart cities, which 
+supports different \DTs to communicate and share their what-if simulations. This demonstrates that the composition pattern can be 
+used outside of the shop-floor of an industry. Another similar problem is solved by the idea of Digital Twin Continuum applied 
+by \cite{Barbone2024}, coordinating multiples \DTs across edge-to-cloud environments.\\
+Several problems, though, can be identified in the described solutions. Most architectural models deal with composition, 
+orchestration, or infrastructure individually but lack a coherent architectural approach to address the issues altogether. 
+The interoperability schemes suggested by many researchers are often limited by either the application context in which they 
+operate or even by the underlying communication protocols used in the system being developed. Finally, there is insufficient 
+scientific exploration regarding multiple \DT orchestration in industrial shop-floor environments that consider scalability and 
+interoperability as design requirements from the beginning. The architecture proposed in this dissertation aims to fill this gap. 
+The table containing the articles mentioned and analyzed in this section can be found in the~\autoref{apx:systematic_literature_review_table}.
 
 \chapter{Proposal}
 \label{ch:proposal}
@@ -297,14 +407,14 @@ requiring its own DT instance, its own data pipeline, and its own lifecycle mana
 Taking these considerations into account, for the purpose of this work, a Digital Twin Ecosystem is understood as a networked 
 arrangement of \DTs operating over a shared platform, in which semantic interoperability enables fleet-level reasoning and knowledge 
 transfer across different assets, subject to the data governance constraints of the deployment context. This definition can be 
-considered an expansion of the Digital Twin Environment introduced by \citeonline{Grieves2017} and described in Section 2.2, 
+considered an expansion of the Digital Twin Environment introduced by \citeonline{Grieves2017} and described in Section~\ref{sec:internal_reference_and_dt_lifecycle}, 
 extended to accommodate fleet-scale platforms in the industrial context. The central argument of this proposal is that realizing 
 such an ecosystem in practice requires a dedicated orchestration architecture, one that can automate digital twin lifecycle 
 management, enforce the isolation between tenants, and distribute computation between edge and cloud according to latency and data 
 sovereignty constraints. The following sections present and describe the proposed architecture in detail.
 
 \section{Architecture}
-
+\label{sec:architecture}
 The proposed architecture  addresses the operational challenges of managing multiple concurrent digital twin instances in a 
 heterogeneous edge-cloud industrial environment, providing mechanisms for automated provisioning, data routing, model deployment and 
 lifecycle management. As shown in Fig. \ref{fig:digital_twin_01}, the architecture is composed by five layers: the physical edge, 
@@ -313,7 +423,7 @@ data ingestion, storage, execution and application services with data analytics.
 \begin{center}
     \includegraphics[width=0.7\textwidth]{DTaaS_architecture.png}
     \captionof{figure}{Proposed architecture for multiple digital twin hosting and orchestration}
-    \label{fig:digital_twin_01}
+    \label{fig:dtaas_architecture}
 \end{center}
 
 The technologies selected for the architectural representation were not chosen and are used only as examples of how the layers work. 
@@ -329,7 +439,7 @@ The connection between the gateway and the ingestion layer is established via li
 
 The data ingestion layer is responsible for receiving telemetry and data streams from the physical edge layer, validating their structure, and routing each message to the correct processing destination. This layer is built based on a central message broker, which is complemented by a schema registry and the event router so that governance can be assured. \\
 The message broker is the central intake point for all the data and telemetry entering the platform. It receives data streams from multiples assets concurrently and decouples it, to the \DTPods through the schema registry and message broker and also sends the data to the storage. Each asset is identified by a unique identifier embedded in every message it produces, allowing the broker to organize incoming data by source and maintain message ordering within each asset stream, and ensuring that each \DTPod consumes only the data to its physical counterpart.\\
-The schema registry will be used to enforce a data contract between the machines and the platform as a way to validate whether the data is coming from the right asset. As updates in the machine software or firmware can change the names used in fields or other data sensors, this mechanism can be used to alert the operator to prevent data corruption or other problems, and to maintain syntactic interoperability as cited in the LCIM Framework at Section 2.3.1, ensuring that the data used in the platform is structurally consistent.\\
+The schema registry will be used to enforce a data contract between the machines and the platform as a way to validate whether the data is coming from the right asset. As updates in the machine software or firmware can change the names used in fields or other data sensors, this mechanism can be used to alert the operator to prevent data corruption or other problems, and to maintain syntactic interoperability as cited in the LCIM Framework at Section~\ref{sec:levels_of_interoperability}, ensuring that the data used in the platform is structurally consistent.\\
 The event router is responsible for consuming the messages from the message broker and forwarding them to the right \DTPod instance based on the asset identifier embedded in the message payload. When a new DT instance is provisioned, the twin manager registers the new asset identifier within the event router, which begins to send the corresponding data stream to the pod. When the pod is decommissioned, the registration can be removed and the data stream is either archived or redirected.
 
 \subsection{Storage Layer}
@@ -340,7 +450,7 @@ The second storage is an object store that employs \SthreeStorage compatible sto
 The third storage is a graph \DB, which can be used to maintain the ontological model of the machines, their components, the sensors attached to them, and the relationships between the entities. This knowledge graph can be used for the semantic enrichment of anomaly detection and other patterns that can be discovered through data analysis. For example, when a \DTPod detects an anomalous reading from a sensor, the graph can be queried to determine which component the sensor monitors and what can be expected if failures occur. This contextual information can help with maintenance and other recommendations.
 
 \subsection{Execution Layer}
-
+\label{sec:executin_layer}
 The execution layer is the operational core of the proposed platform and the primary focus of this work. It will be implemented using a container orchestration platform, possibly Kubernetes, which can provide the container scheduling, health monitoring, and lifecycle management capabilities necessary to operate the concurrent \DTPods instances over the shared computing infrastructure.\\
 This layer can be divided into two functional components: the Stream Processor and the \DTPod instances. The Stream Processor performs the streaming and processing of the data arriving from the ingestion layer before it can be delivered to individual pods. The Stream Processor acts as an intermediary that ensures each \DTPod receives preprocessed and contextually enriched data, which can be obtained from the knowledge graph, rather than raw data.\\
 Each \DTPod is a containerized unit that encapsulates the complete runtime of a single DT instance. The \DTPod maintains an internal Model State, which represents the current operational state of the physical asset, continuously updated as new data arrives from the Stream Processor. One possible way to achieve this is to periodically checkpoint the Model State to the object store to help with eventual pod restarts and ensure that the DT is preserved across infrastructure events without the need to re-activate the physical asset. The processing logic applied to the Model State, which can be a hybrid approach between a physics-based simulation and a data-driven inference model, is encapsulated within the pod. This design decision treats the Digital Twin as a hot-reload mechanism that can be changed without affecting different parts of the architecture, like new versions of the physical asset can be loaded into the object store.\\
@@ -348,12 +458,13 @@ The \DTPod produces output results and recommended actions to be taken on the ph
 
 \subsection{Application Services Layer}
 
-The Application Services layer provides the interfaces through which operators, analysts, and external systems interact with the platform. The access to the data is mediated by an API Gateway, which enforces authentication, rate limiting, and routing across the layer's services.\\
+The Application Services layer provides the interfaces through which operators, analysts, and external systems interact with the platform. The access to the data is mediated by an \API Gateway, which enforces authentication, rate limiting, and routing across the layer's services.\\
 The Dashboard service provides real-time operational visibility into the fleet of monitored assets, consuming the data from each \DTPod, and also presenting performance indicators, anomaly alerts and fleet status to the operators at the shop floor. The dashboard is updated continuously as new data arrives from the execution layer, providing a live view of operational status of all machines, also providing analytics services on a fleet-level, without the need to interact with individual \DTs instances directly.\\
 The 3D visualization service can be implemented using a range of technologies, with the main candidate being the Unity game engine, which can be used to render interactive three dimensional models of each monitored asset and animating it in response to the current model state. This allows the operators and other users to intuitively interpret the machine's condition through its digital representation. The 3D model assets are loaded from the object store at initialization, making the visualization service purely a consumer of the state produced by the execution layer.
-As defined in Section 4.5, the twin manager acts as the control panel to the operational lifecycle of all the \DTs on the platform. It shows a interface in which operators can provision new \DTs, monitor the status of running pods and decommission running \DTs. 
+As defined in Section~\ref{sec:executin_layer}, the twin manager acts as the control panel to the operational lifecycle of all the \DTs on the platform. It shows a interface in which operators can provision new \DTs, monitor the status of running pods and decommission running \DTs. 
 
 \section{Methodology and Timeline}
+\label{sec:methodology_and_timeline}
 This research follows an applied investigation grounded in the \DSR methodology as presented by \citeonline{Hevner2004}, 
 as it seeks to address practical and domain-specific problems in the industrial context, as it follows the absence of a structured 
 architecture for the orchestration of multiple concurrent Digital Twin instances. With this, the aim of this research work  is to 
@@ -367,11 +478,12 @@ The qualitative component manifests in the systematic literature review, as the 
 conceptual modeling of the proposed architecture. This phase establishes the theoretical knowledge foundations upon which the 
 architecture is constructed, ensuring that the proposed solution is grounded in the current state of the art and addresses the 
 existing gaps in the literature.\\
-The quantitative component is applied in the validation phase, where the empirical data is collected and analyzed, from the 
-developed architecture, to evaluate its performance. The evaluation metrics include latency, resource utilization, and system 
-throughput under representative operational conditions, measured through controlled benchmarks. This empirical evaluation is 
-intended to provide evidence of the solution's efficiency and scalability, enabling an evidence-based assessment of the proposed 
-architecture's suitability for real-world industrial deployments.
+The quantitative component is applied in the validation phase, as the architecture is implemented together with the test bed \DT, 
+where the empirical data is collected and analyzed, to evaluate its performance. The evaluation metrics include latency, 
+resource utilization, and system throughput under representative operational conditions, measured through controlled benchmarks. 
+This empirical evaluation is intended to provide evidence of the solution's efficiency and scalability, enabling an evidence-based 
+assessment of the proposed architecture's suitability for real-world industrial deployments, after this stage the methodology and 
+result chapters will be written. The dissertation execution plan is presented below in the~\autoref{fig:gantt}.
 
 \begin{figure}[h]
 \centering
@@ -418,12 +530,11 @@ architecture's suitability for real-world industrial deployments.
 \ganttlink{elem2}{elem3}
 \ganttlink{elem3}{elem4}
 \ganttlink{elem4}{elem5}
-
 \end{ganttchart}
 
 }
-\label{fig:gantt}
 \caption{Dissertation execution schedule.}
+\label{fig:gantt}
 \end{figure}
 
 % \subsubsubsection{Tomate}
