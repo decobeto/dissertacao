@@ -14,7 +14,7 @@ present by \citeonline{Tao2017ShoopFloor}, true smart manufacturing requires a f
 fully interconnected ecosystems. A typical shop-floor comprises of multiple heterogeneous assets, each requiring its own \DT 
 instance, data pipeline, and lifecycle management. This introduces a class of infrastructure and coordination challenge that 
 individual \DT architecture are not designed to address.\\
-Through the systematic review presented in Section~\ref{ch:related-work} we show that the existing literature investigates the communication standards, 
+Through the systematic review presented in Chapter~\ref{ch:related-work} we show that the existing literature investigates the communication standards, 
 composition of \DTs, and internal architectures. Although, the problem of running multiple \DTs instances over a shared infrastructure 
 in a scalable, interoperable and operationally continuous way remains not fully addressed.\\
 This dissertation addresses this gap by proposing, implementing and evaluating an orchestration architecture for the deployment 
@@ -48,7 +48,7 @@ failures, and coordinating model updates without interrupting ongoing operations
 considered at a large scale, they constitute an orchestration problem that has both industrial and academic dimensions. From an 
 industrial perspective, manufacturing environments impose strict operational constraints, such as edge nodes with limited computing 
 resources, network reliability, and real-time data processing with latency that can be unfeasible in cloud architectures. From the 
-academic perspective, as pointed out by the systematic review present in the Related Work section, while composition, coordination, 
+academic perspective, as pointed out by the systematic review present in the Related Work chapter, while composition, coordination, 
 and infrastructure challenges have been investigated, they do not intersect as a scalable, interoperable architecture focused on 
 the orchestration of the industrial shop-floor.
 
@@ -76,10 +76,10 @@ This dissertation presents the following contributions:
 
 \section{Document Structure}
 \label{ch:document-structure}
-The Section~\ref{ch:theoretical-background} defines the theoretical background concepts and definitions necessary to
-support the proposed work. Section~\ref{ch:related-work} conducts studies in related works and it differences
-to the proposed approach. Section~\ref{sec:architecture} presents the detailed architecture created, describing
-each architectural layer. Finally, Section~\ref{sec:methodology_and_timeline} explains the following methodology which will be used to
+The Chapter~\ref{ch:theoretical-background} defines the theoretical background concepts and definitions necessary to
+support the proposed work. Chapter~\ref{ch:related-work} conducts studies in related works and it differences
+to the proposed approach. Chapter~\ref{sec:proposal} presents the detailed architecture created, describing
+each architectural layer. Finally, Chapter~\ref{sec:methodology_and_timeline} explains the following methodology which will be used to
 develop the proof of concept implementation and evaluation, and the schedule in which the full research will be developed.
 
 \chapter{Theoretical Background}
@@ -120,7 +120,7 @@ making integration necessary to cover a broader scope. For a set definition a \D
 multi-scale, and probabilistic simulation of a complex product and uses the best available physical models, sensors updates, etc.,
 to mirror the life of its corresponding twin \cite{Tao2017PLM}.
 
-\section{Classification}
+\subsection{Classification}
 
 The concept of Digital Twins in the literature often suffers from a lack of distinction between its representations and
 different levels of complexity. Although the concept of \DTs was originally introduced by Grieves in 2002, the technical
@@ -160,7 +160,7 @@ The taxonomy established by \citeonline{Kritzinger2018} provides the necessary c
 from dynamic \CPS in a definition that can be described as canonical to the field of Digital Twins. However,
 the transition from a digital shadow to a full digital twin imposes requirements that transcend simple connectivity.
 
-\section{Internal Reference Architecture and Digital Twin Lifecycle}
+\subsection{Internal Reference Architecture and Digital Twin Lifecycle}
 \label{sec:internal_reference_and_dt_lifecycle}
 Product lifecycle management is the business activity of managing, in the most effective way, the whole lifecycle of products
 manufactured by a given company, since their conception and design until their retirement and disposal \cite{Tao2017PLM}.
@@ -418,16 +418,15 @@ sovereignty constraints. The following sections present and describe the propose
 The proposed architecture  addresses the operational challenges of managing multiple concurrent digital twin instances in a 
 heterogeneous edge-cloud industrial environment, providing mechanisms for automated provisioning, data routing, model deployment and 
 lifecycle management. As shown in Fig. \ref{fig:digital_twin_01}, the architecture is composed by five layers: the physical edge, 
-data ingestion, storage, execution and application services with data analytics.
+data ingestion, storage, execution and application services with data analytics. The technologies selected 
+for the architectural representation were not chosen and are used only as examples of how the layers work. The five layers and 
+their operational methods are detailed below.
 
 \begin{center}
     \includegraphics[width=0.7\textwidth]{DTaaS_architecture.png}
     \captionof{figure}{Proposed architecture for multiple digital twin hosting and orchestration}
     \label{fig:dtaas_architecture}
 \end{center}
-
-The technologies selected for the architectural representation were not chosen and are used only as examples of how the layers work. 
-The five layers and their operational methods are detailed below.
 
 \subsection{Physical Edge Layer}
 The physical edge layer is the interface between the industrial shop floor and the digital platform. It comprises the physical assets, machines, and sensors that generate the data consumed by the platform, as well as the gateway infrastructure responsible for collecting, pre-processing, and forwarding it to the ingestion layer.\\
@@ -463,7 +462,7 @@ The Dashboard service provides real-time operational visibility into the fleet o
 The 3D visualization service can be implemented using a range of technologies, with the main candidate being the Unity game engine, which can be used to render interactive three dimensional models of each monitored asset and animating it in response to the current model state. This allows the operators and other users to intuitively interpret the machine's condition through its digital representation. The 3D model assets are loaded from the object store at initialization, making the visualization service purely a consumer of the state produced by the execution layer.
 As defined in Section~\ref{sec:executin_layer}, the twin manager acts as the control panel to the operational lifecycle of all the \DTs on the platform. It shows a interface in which operators can provision new \DTs, monitor the status of running pods and decommission running \DTs. 
 
-\section{Methodology and Timeline}
+\chapter{Methodology and Timeline}
 \label{sec:methodology_and_timeline}
 This research follows an applied investigation grounded in the \DSR methodology as presented by \citeonline{Hevner2004}, 
 as it seeks to address practical and domain-specific problems in the industrial context, as it follows the absence of a structured 
@@ -483,7 +482,7 @@ where the empirical data is collected and analyzed, to evaluate its performance.
 resource utilization, and system throughput under representative operational conditions, measured through controlled benchmarks. 
 This empirical evaluation is intended to provide evidence of the solution's efficiency and scalability, enabling an evidence-based 
 assessment of the proposed architecture's suitability for real-world industrial deployments, after this stage the methodology and 
-result chapters will be written. The dissertation execution plan is presented below in the~\autoref{fig:gantt}.
+result chapters will be written. The dissertation execution plan is presented by~\autoref{fig:gantt}.
 
 \begin{figure}[h]
 \centering
