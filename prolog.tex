@@ -26,21 +26,21 @@
 
 \begin{resumo}[Resumo]
   Os Gêmeos Digitais (GDs) são cópias digitais de ativos físicos, processos, ou sistemas, que interagem com os mesmos através de um 
-  fluxo bidirecional de dados, sendo utilizado principalmente para simular, acompanhar e otimizar processos. Se tornaram um componente
-  fundamental para a indústria 4.0, sendo utilizado nas indústrias de manufatura, aeroespacial e automotiva. Entranto a utilização 
-  atual de GDs em ambientes de manufatura industrial não abrange a coordenação e gerenciamento de múltiplas instâncias simultâneas em um chão 
-  de fábrica heterigêneo. Embora a literatura existente apresente abordagens arquiteturais para lidar com a composição, orquestração
-  e infraestrutura, elas carecem de um projeto coerente que trate a escalabilidade e a interoperabilidade como requisito de maior 
-  importância. Para preencher essa lacuna, este trabalho propõe uma arquitetura para a implantação, orquestraçãoe gerenciamento do 
-  ciclo de vida de múltiplas instâncias de Gêmeos Digitais no ambiente de chão de fábrica industrial. Essa arquitetura introduz uma 
-  unidade conteinerizada chamada ``DTPod'' que encapsula o gerenciamento de estado e a lógica de inferência orientada a dados para
-  atuar como a contraparte digital do ativo físico. Ela também possui um Gerenciador de Gêmeos como um componente responsável pelo 
-  provisionamento, monitoramento e desativação das instâncias do \textit{pod} por meio de uma plataforma de orquestração de contêineres.
-  Os dados coletados dos ativos físicos são tratados por uma camada de ingestão dedicada que combina um agente de mensagens, um registro 
-  de esquemas e um roteador de eventos, e permite uma modelagem ontológica baseada em grafos de conhecimento. A interoperabilidade
-  semântica segue os conceitos do Modelo de Interoperabilidade Conceitual (\textit{Conceptual Interoperability Model}) e pode possívelmente
-  ser abordada por meio de um padrão de troca de dados, como o OPC-UA. Por fim, é prevista uma prova de conceitos para avaliar a
-  arquitetura em condições reais.
+  fluxo bidirecional de dados, sendo utilizados principalmente para simular, acompanhar e otimizar processos. Se tornaram um elemento 
+  fundamental para a indústria 4.0, utilizado inicialmente nas indústrias de manufatura, aeroespacial e automotiva, com potencial 
+  para adoção em diversos outros setores. Entretanto, a utilização atual de GDs em ambientes de manufatura industrial não abrange a 
+  coordenação e gerenciamento de múltiplas instâncias simultâneas em um chão de fábrica heterogêneo. Embora a literatura existente 
+  apresente abordagens arquiteturais para lidar com a composição, orquestração e infraestrutura, elas carecem de um projeto coerente 
+  que trate a escalabilidade e a interoperabilidade como requisito de maior importância. Para preencher essa lacuna, este trabalho 
+  propõe uma arquitetura para a implantação, orquestraçãoe gerenciamento do ciclo de vida de múltiplas instâncias de Gêmeos Digitais 
+  no ambiente de chão de fábrica industrial. Essa arquitetura introduz uma unidade conteinerizada chamada ``DTPod'' que encapsula o 
+  gerenciamento de estado e a lógica de inferência orientada a dados para atuar como a contraparte digital do ativo físico. Ela 
+  também possui um Gerenciador de Gêmeos como um componente responsável pelo provisionamento, monitoramento e desativação das 
+  instâncias do \textit{pod} por meio de uma plataforma de orquestração de contêineres. Os dados coletados dos ativos físicos são 
+  tratados por uma camada de ingestão dedicada que combina um agente de mensagens, um registro de esquemas e um roteador de eventos, 
+  e permite uma modelagem ontológica baseada em grafos de conhecimento. A interoperabilidade semântica segue os conceitos do Modelo 
+  de Interoperabilidade Conceitual (\textit{Conceptual Interoperability Model}) e possibilita a adoção de protocolos padronizados 
+  para troca de dados, como o OPC-UA. Por fim, é prevista uma prova de conceitos para avaliar a arquitetura em condições reais.
 
   % Atenção! a BU exige separação através de ponto (.). Ela recomanda de 3 a 5 keywords
   \vspace{\baselineskip} 
